@@ -1,0 +1,72 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeleteEmployeeByEmployeeIdResponse
+  description: Responses from the 'delete_employee_by_employee_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Employee!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: chinook_DeleteEmployeeByEmployeeIdResponse
+    inputTypeName: chinook_DeleteEmployeeByEmployeeIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: delete_employee_by_employee_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeleteEmployeeByEmployeeIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeleteEmployeeByEmployeeId
+  outputType: DeleteEmployeeByEmployeeIdResponse!
+  arguments:
+    - name: keyEmployeeId
+      type: Int4!
+    - name: preCheck
+      type: EmployeeBoolExp
+      description: Delete permission predicate over the 'employee' collection
+  source:
+    dataConnectorName: postgres
+    dataConnectorCommand:
+      procedure: delete_employee_by_employee_id
+    argumentMapping:
+      keyEmployeeId: key_employee_id
+      preCheck: pre_check
+  graphql:
+    rootFieldName: chinook_deleteEmployeeByEmployeeId
+    rootFieldKind: Mutation
+  description: Delete any row on the 'employee' collection using the 'employee_id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeleteEmployeeByEmployeeId
+  permissions:
+    - role: admin
+      allowExecution: true
+

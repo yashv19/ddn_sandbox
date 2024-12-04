@@ -1,0 +1,182 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnArtistArtistId
+  description: Update the 'artist_id' column in the 'artist' collection
+  fields:
+    - name: set
+      type: Int4!
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnArtistArtistId
+    inputTypeName: chinook_UpdateColumnArtistArtistIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_artist_artist_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnArtistArtistId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnArtistName
+  description: Update the 'name' column in the 'artist' collection
+  fields:
+    - name: set
+      type: Varchar
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnArtistName
+    inputTypeName: chinook_UpdateColumnArtistNameInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_artist_name
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnArtistName
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateArtistByArtistIdUpdateColumns
+  description: Update the columns of the 'artist' collection
+  fields:
+    - name: artistId
+      type: UpdateColumnArtistArtistId
+      description: Update the 'artist_id' column in the 'artist' collection.
+    - name: name
+      type: UpdateColumnArtistName
+      description: Update the 'name' column in the 'artist' collection.
+  graphql:
+    typeName: chinook_UpdateArtistByArtistIdUpdateColumns
+    inputTypeName: chinook_UpdateArtistByArtistIdUpdateColumnsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_artist_by_artist_id_update_columns
+      fieldMapping:
+        artistId:
+          column:
+            name: artist_id
+        name:
+          column:
+            name: name
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateArtistByArtistIdUpdateColumns
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - artistId
+          - name
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateArtistByArtistIdResponse
+  description: Responses from the 'update_artist_by_artist_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Artist!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: chinook_UpdateArtistByArtistIdResponse
+    inputTypeName: chinook_UpdateArtistByArtistIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_artist_by_artist_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateArtistByArtistIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: UpdateArtistByArtistId
+  outputType: UpdateArtistByArtistIdResponse!
+  arguments:
+    - name: keyArtistId
+      type: Int4!
+    - name: postCheck
+      type: ArtistBoolExp
+      description: Update permission post-condition predicate over the 'artist' collection
+    - name: preCheck
+      type: ArtistBoolExp
+      description: Update permission pre-condition predicate over the 'artist' collection
+    - name: updateColumns
+      type: UpdateArtistByArtistIdUpdateColumns!
+  source:
+    dataConnectorName: postgres
+    dataConnectorCommand:
+      procedure: update_artist_by_artist_id
+    argumentMapping:
+      keyArtistId: key_artist_id
+      postCheck: post_check
+      preCheck: pre_check
+      updateColumns: update_columns
+  graphql:
+    rootFieldName: chinook_updateArtistByArtistId
+    rootFieldKind: Mutation
+  description: Update any row on the 'artist' collection using the 'artist_id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: UpdateArtistByArtistId
+  permissions:
+    - role: admin
+      allowExecution: true
+

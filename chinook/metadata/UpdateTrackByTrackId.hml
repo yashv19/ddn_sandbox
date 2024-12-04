@@ -1,0 +1,455 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnTrackAlbumId
+  description: Update the 'album_id' column in the 'track' collection
+  fields:
+    - name: set
+      type: Int4
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnTrackAlbumId
+    inputTypeName: chinook_UpdateColumnTrackAlbumIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_track_album_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnTrackAlbumId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnTrackBytes
+  description: Update the 'bytes' column in the 'track' collection
+  fields:
+    - name: set
+      type: Int4
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnTrackBytes
+    inputTypeName: chinook_UpdateColumnTrackBytesInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_track_bytes
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnTrackBytes
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnTrackComposer
+  description: Update the 'composer' column in the 'track' collection
+  fields:
+    - name: set
+      type: Varchar
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnTrackComposer
+    inputTypeName: chinook_UpdateColumnTrackComposerInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_track_composer
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnTrackComposer
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnTrackGenreId
+  description: Update the 'genre_id' column in the 'track' collection
+  fields:
+    - name: set
+      type: Int4
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnTrackGenreId
+    inputTypeName: chinook_UpdateColumnTrackGenreIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_track_genre_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnTrackGenreId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnTrackMediaTypeId
+  description: Update the 'media_type_id' column in the 'track' collection
+  fields:
+    - name: set
+      type: Int4!
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnTrackMediaTypeId
+    inputTypeName: chinook_UpdateColumnTrackMediaTypeIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_track_media_type_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnTrackMediaTypeId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnTrackMilliseconds
+  description: Update the 'milliseconds' column in the 'track' collection
+  fields:
+    - name: set
+      type: Int4!
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnTrackMilliseconds
+    inputTypeName: chinook_UpdateColumnTrackMillisecondsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_track_milliseconds
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnTrackMilliseconds
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnTrackName
+  description: Update the 'name' column in the 'track' collection
+  fields:
+    - name: set
+      type: Varchar!
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnTrackName
+    inputTypeName: chinook_UpdateColumnTrackNameInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_track_name
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnTrackName
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnTrackTrackId
+  description: Update the 'track_id' column in the 'track' collection
+  fields:
+    - name: set
+      type: Int4!
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnTrackTrackId
+    inputTypeName: chinook_UpdateColumnTrackTrackIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_track_track_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnTrackTrackId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnTrackUnitPrice
+  description: Update the 'unit_price' column in the 'track' collection
+  fields:
+    - name: set
+      type: Numeric!
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnTrackUnitPrice
+    inputTypeName: chinook_UpdateColumnTrackUnitPriceInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_track_unit_price
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnTrackUnitPrice
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateTrackByTrackIdUpdateColumns
+  description: Update the columns of the 'track' collection
+  fields:
+    - name: albumId
+      type: UpdateColumnTrackAlbumId
+      description: Update the 'album_id' column in the 'track' collection.
+    - name: bytes
+      type: UpdateColumnTrackBytes
+      description: Update the 'bytes' column in the 'track' collection.
+    - name: composer
+      type: UpdateColumnTrackComposer
+      description: Update the 'composer' column in the 'track' collection.
+    - name: genreId
+      type: UpdateColumnTrackGenreId
+      description: Update the 'genre_id' column in the 'track' collection.
+    - name: mediaTypeId
+      type: UpdateColumnTrackMediaTypeId
+      description: Update the 'media_type_id' column in the 'track' collection.
+    - name: milliseconds
+      type: UpdateColumnTrackMilliseconds
+      description: Update the 'milliseconds' column in the 'track' collection.
+    - name: name
+      type: UpdateColumnTrackName
+      description: Update the 'name' column in the 'track' collection.
+    - name: trackId
+      type: UpdateColumnTrackTrackId
+      description: Update the 'track_id' column in the 'track' collection.
+    - name: unitPrice
+      type: UpdateColumnTrackUnitPrice
+      description: Update the 'unit_price' column in the 'track' collection.
+  graphql:
+    typeName: chinook_UpdateTrackByTrackIdUpdateColumns
+    inputTypeName: chinook_UpdateTrackByTrackIdUpdateColumnsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_track_by_track_id_update_columns
+      fieldMapping:
+        albumId:
+          column:
+            name: album_id
+        bytes:
+          column:
+            name: bytes
+        composer:
+          column:
+            name: composer
+        genreId:
+          column:
+            name: genre_id
+        mediaTypeId:
+          column:
+            name: media_type_id
+        milliseconds:
+          column:
+            name: milliseconds
+        name:
+          column:
+            name: name
+        trackId:
+          column:
+            name: track_id
+        unitPrice:
+          column:
+            name: unit_price
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateTrackByTrackIdUpdateColumns
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - albumId
+          - bytes
+          - composer
+          - genreId
+          - mediaTypeId
+          - milliseconds
+          - name
+          - trackId
+          - unitPrice
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateTrackByTrackIdResponse
+  description: Responses from the 'update_track_by_track_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Track!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: chinook_UpdateTrackByTrackIdResponse
+    inputTypeName: chinook_UpdateTrackByTrackIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_track_by_track_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateTrackByTrackIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: UpdateTrackByTrackId
+  outputType: UpdateTrackByTrackIdResponse!
+  arguments:
+    - name: keyTrackId
+      type: Int4!
+    - name: postCheck
+      type: TrackBoolExp
+      description: Update permission post-condition predicate over the 'track' collection
+    - name: preCheck
+      type: TrackBoolExp
+      description: Update permission pre-condition predicate over the 'track' collection
+    - name: updateColumns
+      type: UpdateTrackByTrackIdUpdateColumns!
+  source:
+    dataConnectorName: postgres
+    dataConnectorCommand:
+      procedure: update_track_by_track_id
+    argumentMapping:
+      keyTrackId: key_track_id
+      postCheck: post_check
+      preCheck: pre_check
+      updateColumns: update_columns
+  graphql:
+    rootFieldName: chinook_updateTrackByTrackId
+    rootFieldKind: Mutation
+  description: Update any row on the 'track' collection using the 'track_id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: UpdateTrackByTrackId
+  permissions:
+    - role: admin
+      allowExecution: true
+

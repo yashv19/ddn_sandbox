@@ -1,3 +1,5 @@
+include:
+  - path: chinook/connector/postgres/compose.yaml
 services:
   engine:
     build:

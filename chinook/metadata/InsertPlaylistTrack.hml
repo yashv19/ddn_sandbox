@@ -1,0 +1,108 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertPlaylistTrackObject
+  fields:
+    - name: playlistId
+      type: Int4!
+    - name: trackId
+      type: Int4!
+  graphql:
+    typeName: chinook_InsertPlaylistTrackObject
+    inputTypeName: chinook_InsertPlaylistTrackObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: insert_playlist_track_object
+      fieldMapping:
+        playlistId:
+          column:
+            name: playlist_id
+        trackId:
+          column:
+            name: track_id
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertPlaylistTrackObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - playlistId
+          - trackId
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertPlaylistTrackResponse
+  description: Responses from the 'insert_playlist_track' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[PlaylistTrack!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: chinook_InsertPlaylistTrackResponse
+    inputTypeName: chinook_InsertPlaylistTrackResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: insert_playlist_track_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertPlaylistTrackResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertPlaylistTrack
+  outputType: InsertPlaylistTrackResponse!
+  arguments:
+    - name: objects
+      type: "[InsertPlaylistTrackObject!]!"
+    - name: postCheck
+      type: PlaylistTrackBoolExp
+      description: Insert permission predicate over the 'playlist_track' collection
+  source:
+    dataConnectorName: postgres
+    dataConnectorCommand:
+      procedure: insert_playlist_track
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: chinook_insertPlaylistTrack
+    rootFieldKind: Mutation
+  description: Insert into the playlist_track table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertPlaylistTrack
+  permissions:
+    - role: admin
+      allowExecution: true
+

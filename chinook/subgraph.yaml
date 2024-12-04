@@ -1,0 +1,21 @@
+kind: Subgraph
+version: v2
+definition:
+    name: chinook
+    generator:
+        rootPath: .
+        graphqlRootFieldPrefix: chinook_
+        graphqlTypeNamePrefix: chinook_
+        namingConvention: graphql
+    includePaths:
+        - metadata
+    envMapping:
+        CHINOOK_POSTGRES_AUTHORIZATION_HEADER:
+            fromEnv: CHINOOK_POSTGRES_AUTHORIZATION_HEADER
+        CHINOOK_POSTGRES_READ_URL:
+            fromEnv: CHINOOK_POSTGRES_READ_URL
+        CHINOOK_POSTGRES_WRITE_URL:
+            fromEnv: CHINOOK_POSTGRES_WRITE_URL
+    connectors:
+        - path: connector/postgres/connector.yaml
+          connectorLinkName: postgres

@@ -1,0 +1,72 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeleteAlbumByAlbumIdResponse
+  description: Responses from the 'delete_album_by_album_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Album!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: chinook_DeleteAlbumByAlbumIdResponse
+    inputTypeName: chinook_DeleteAlbumByAlbumIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: delete_album_by_album_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeleteAlbumByAlbumIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeleteAlbumByAlbumId
+  outputType: DeleteAlbumByAlbumIdResponse!
+  arguments:
+    - name: keyAlbumId
+      type: Int4!
+    - name: preCheck
+      type: AlbumBoolExp
+      description: Delete permission predicate over the 'album' collection
+  source:
+    dataConnectorName: postgres
+    dataConnectorCommand:
+      procedure: delete_album_by_album_id
+    argumentMapping:
+      keyAlbumId: key_album_id
+      preCheck: pre_check
+  graphql:
+    rootFieldName: chinook_deleteAlbumByAlbumId
+    rootFieldKind: Mutation
+  description: Delete any row on the 'album' collection using the 'album_id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeleteAlbumByAlbumId
+  permissions:
+    - role: admin
+      allowExecution: true
+

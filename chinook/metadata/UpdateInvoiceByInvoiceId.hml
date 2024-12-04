@@ -1,0 +1,455 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnInvoiceBillingAddress
+  description: Update the 'billing_address' column in the 'invoice' collection
+  fields:
+    - name: set
+      type: Varchar
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnInvoiceBillingAddress
+    inputTypeName: chinook_UpdateColumnInvoiceBillingAddressInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_invoice_billing_address
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnInvoiceBillingAddress
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnInvoiceBillingCity
+  description: Update the 'billing_city' column in the 'invoice' collection
+  fields:
+    - name: set
+      type: Varchar
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnInvoiceBillingCity
+    inputTypeName: chinook_UpdateColumnInvoiceBillingCityInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_invoice_billing_city
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnInvoiceBillingCity
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnInvoiceBillingCountry
+  description: Update the 'billing_country' column in the 'invoice' collection
+  fields:
+    - name: set
+      type: Varchar
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnInvoiceBillingCountry
+    inputTypeName: chinook_UpdateColumnInvoiceBillingCountryInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_invoice_billing_country
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnInvoiceBillingCountry
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnInvoiceBillingPostalCode
+  description: Update the 'billing_postal_code' column in the 'invoice' collection
+  fields:
+    - name: set
+      type: Varchar
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnInvoiceBillingPostalCode
+    inputTypeName: chinook_UpdateColumnInvoiceBillingPostalCodeInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_invoice_billing_postal_code
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnInvoiceBillingPostalCode
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnInvoiceBillingState
+  description: Update the 'billing_state' column in the 'invoice' collection
+  fields:
+    - name: set
+      type: Varchar
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnInvoiceBillingState
+    inputTypeName: chinook_UpdateColumnInvoiceBillingStateInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_invoice_billing_state
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnInvoiceBillingState
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnInvoiceCustomerId
+  description: Update the 'customer_id' column in the 'invoice' collection
+  fields:
+    - name: set
+      type: Int4!
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnInvoiceCustomerId
+    inputTypeName: chinook_UpdateColumnInvoiceCustomerIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_invoice_customer_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnInvoiceCustomerId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnInvoiceInvoiceDate
+  description: Update the 'invoice_date' column in the 'invoice' collection
+  fields:
+    - name: set
+      type: Timestamp!
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnInvoiceInvoiceDate
+    inputTypeName: chinook_UpdateColumnInvoiceInvoiceDateInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_invoice_invoice_date
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnInvoiceInvoiceDate
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnInvoiceInvoiceId
+  description: Update the 'invoice_id' column in the 'invoice' collection
+  fields:
+    - name: set
+      type: Int4!
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnInvoiceInvoiceId
+    inputTypeName: chinook_UpdateColumnInvoiceInvoiceIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_invoice_invoice_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnInvoiceInvoiceId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnInvoiceTotal
+  description: Update the 'total' column in the 'invoice' collection
+  fields:
+    - name: set
+      type: Numeric!
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnInvoiceTotal
+    inputTypeName: chinook_UpdateColumnInvoiceTotalInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_invoice_total
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnInvoiceTotal
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateInvoiceByInvoiceIdUpdateColumns
+  description: Update the columns of the 'invoice' collection
+  fields:
+    - name: billingAddress
+      type: UpdateColumnInvoiceBillingAddress
+      description: Update the 'billing_address' column in the 'invoice' collection.
+    - name: billingCity
+      type: UpdateColumnInvoiceBillingCity
+      description: Update the 'billing_city' column in the 'invoice' collection.
+    - name: billingCountry
+      type: UpdateColumnInvoiceBillingCountry
+      description: Update the 'billing_country' column in the 'invoice' collection.
+    - name: billingPostalCode
+      type: UpdateColumnInvoiceBillingPostalCode
+      description: Update the 'billing_postal_code' column in the 'invoice' collection.
+    - name: billingState
+      type: UpdateColumnInvoiceBillingState
+      description: Update the 'billing_state' column in the 'invoice' collection.
+    - name: customerId
+      type: UpdateColumnInvoiceCustomerId
+      description: Update the 'customer_id' column in the 'invoice' collection.
+    - name: invoiceDate
+      type: UpdateColumnInvoiceInvoiceDate
+      description: Update the 'invoice_date' column in the 'invoice' collection.
+    - name: invoiceId
+      type: UpdateColumnInvoiceInvoiceId
+      description: Update the 'invoice_id' column in the 'invoice' collection.
+    - name: total
+      type: UpdateColumnInvoiceTotal
+      description: Update the 'total' column in the 'invoice' collection.
+  graphql:
+    typeName: chinook_UpdateInvoiceByInvoiceIdUpdateColumns
+    inputTypeName: chinook_UpdateInvoiceByInvoiceIdUpdateColumnsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_invoice_by_invoice_id_update_columns
+      fieldMapping:
+        billingAddress:
+          column:
+            name: billing_address
+        billingCity:
+          column:
+            name: billing_city
+        billingCountry:
+          column:
+            name: billing_country
+        billingPostalCode:
+          column:
+            name: billing_postal_code
+        billingState:
+          column:
+            name: billing_state
+        customerId:
+          column:
+            name: customer_id
+        invoiceDate:
+          column:
+            name: invoice_date
+        invoiceId:
+          column:
+            name: invoice_id
+        total:
+          column:
+            name: total
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateInvoiceByInvoiceIdUpdateColumns
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - billingAddress
+          - billingCity
+          - billingCountry
+          - billingPostalCode
+          - billingState
+          - customerId
+          - invoiceDate
+          - invoiceId
+          - total
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateInvoiceByInvoiceIdResponse
+  description: Responses from the 'update_invoice_by_invoice_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Invoice!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: chinook_UpdateInvoiceByInvoiceIdResponse
+    inputTypeName: chinook_UpdateInvoiceByInvoiceIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_invoice_by_invoice_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateInvoiceByInvoiceIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: UpdateInvoiceByInvoiceId
+  outputType: UpdateInvoiceByInvoiceIdResponse!
+  arguments:
+    - name: keyInvoiceId
+      type: Int4!
+    - name: postCheck
+      type: InvoiceBoolExp
+      description: Update permission post-condition predicate over the 'invoice' collection
+    - name: preCheck
+      type: InvoiceBoolExp
+      description: Update permission pre-condition predicate over the 'invoice' collection
+    - name: updateColumns
+      type: UpdateInvoiceByInvoiceIdUpdateColumns!
+  source:
+    dataConnectorName: postgres
+    dataConnectorCommand:
+      procedure: update_invoice_by_invoice_id
+    argumentMapping:
+      keyInvoiceId: key_invoice_id
+      postCheck: post_check
+      preCheck: pre_check
+      updateColumns: update_columns
+  graphql:
+    rootFieldName: chinook_updateInvoiceByInvoiceId
+    rootFieldKind: Mutation
+  description: Update any row on the 'invoice' collection using the 'invoice_id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: UpdateInvoiceByInvoiceId
+  permissions:
+    - role: admin
+      allowExecution: true
+

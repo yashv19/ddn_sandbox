@@ -1,0 +1,108 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertGenreObject
+  fields:
+    - name: genreId
+      type: Int4!
+    - name: name
+      type: Varchar
+  graphql:
+    typeName: chinook_InsertGenreObject
+    inputTypeName: chinook_InsertGenreObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: insert_genre_object
+      fieldMapping:
+        genreId:
+          column:
+            name: genre_id
+        name:
+          column:
+            name: name
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertGenreObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - genreId
+          - name
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertGenreResponse
+  description: Responses from the 'insert_genre' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Genre!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: chinook_InsertGenreResponse
+    inputTypeName: chinook_InsertGenreResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: insert_genre_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertGenreResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertGenre
+  outputType: InsertGenreResponse!
+  arguments:
+    - name: objects
+      type: "[InsertGenreObject!]!"
+    - name: postCheck
+      type: GenreBoolExp
+      description: Insert permission predicate over the 'genre' collection
+  source:
+    dataConnectorName: postgres
+    dataConnectorCommand:
+      procedure: insert_genre
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: chinook_insertGenre
+    rootFieldKind: Mutation
+  description: Insert into the genre table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertGenre
+  permissions:
+    - role: admin
+      allowExecution: true
+

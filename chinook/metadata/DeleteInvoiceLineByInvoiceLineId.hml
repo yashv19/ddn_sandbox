@@ -1,0 +1,73 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeleteInvoiceLineByInvoiceLineIdResponse
+  description: Responses from the 'delete_invoice_line_by_invoice_line_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[InvoiceLine!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: chinook_DeleteInvoiceLineByInvoiceLineIdResponse
+    inputTypeName: chinook_DeleteInvoiceLineByInvoiceLineIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: delete_invoice_line_by_invoice_line_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeleteInvoiceLineByInvoiceLineIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeleteInvoiceLineByInvoiceLineId
+  outputType: DeleteInvoiceLineByInvoiceLineIdResponse!
+  arguments:
+    - name: keyInvoiceLineId
+      type: Int4!
+    - name: preCheck
+      type: InvoiceLineBoolExp
+      description: Delete permission predicate over the 'invoice_line' collection
+  source:
+    dataConnectorName: postgres
+    dataConnectorCommand:
+      procedure: delete_invoice_line_by_invoice_line_id
+    argumentMapping:
+      keyInvoiceLineId: key_invoice_line_id
+      preCheck: pre_check
+  graphql:
+    rootFieldName: chinook_deleteInvoiceLineByInvoiceLineId
+    rootFieldKind: Mutation
+  description: Delete any row on the 'invoice_line' collection using the
+    'invoice_line_id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeleteInvoiceLineByInvoiceLineId
+  permissions:
+    - role: admin
+      allowExecution: true
+

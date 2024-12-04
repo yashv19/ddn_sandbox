@@ -1,0 +1,186 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertEmployeeObject
+  fields:
+    - name: address
+      type: Varchar
+    - name: birthDate
+      type: Timestamp
+    - name: city
+      type: Varchar
+    - name: country
+      type: Varchar
+    - name: email
+      type: Varchar
+    - name: employeeId
+      type: Int4!
+    - name: fax
+      type: Varchar
+    - name: firstName
+      type: Varchar!
+    - name: hireDate
+      type: Timestamp
+    - name: lastName
+      type: Varchar!
+    - name: phone
+      type: Varchar
+    - name: postalCode
+      type: Varchar
+    - name: reportsTo
+      type: Int4
+    - name: state
+      type: Varchar
+    - name: title
+      type: Varchar
+  graphql:
+    typeName: chinook_InsertEmployeeObject
+    inputTypeName: chinook_InsertEmployeeObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: insert_employee_object
+      fieldMapping:
+        address:
+          column:
+            name: address
+        birthDate:
+          column:
+            name: birth_date
+        city:
+          column:
+            name: city
+        country:
+          column:
+            name: country
+        email:
+          column:
+            name: email
+        employeeId:
+          column:
+            name: employee_id
+        fax:
+          column:
+            name: fax
+        firstName:
+          column:
+            name: first_name
+        hireDate:
+          column:
+            name: hire_date
+        lastName:
+          column:
+            name: last_name
+        phone:
+          column:
+            name: phone
+        postalCode:
+          column:
+            name: postal_code
+        reportsTo:
+          column:
+            name: reports_to
+        state:
+          column:
+            name: state
+        title:
+          column:
+            name: title
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertEmployeeObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - address
+          - birthDate
+          - city
+          - country
+          - email
+          - employeeId
+          - fax
+          - firstName
+          - hireDate
+          - lastName
+          - phone
+          - postalCode
+          - reportsTo
+          - state
+          - title
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertEmployeeResponse
+  description: Responses from the 'insert_employee' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Employee!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: chinook_InsertEmployeeResponse
+    inputTypeName: chinook_InsertEmployeeResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: insert_employee_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertEmployeeResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertEmployee
+  outputType: InsertEmployeeResponse!
+  arguments:
+    - name: objects
+      type: "[InsertEmployeeObject!]!"
+    - name: postCheck
+      type: EmployeeBoolExp
+      description: Insert permission predicate over the 'employee' collection
+  source:
+    dataConnectorName: postgres
+    dataConnectorCommand:
+      procedure: insert_employee
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: chinook_insertEmployee
+    rootFieldKind: Mutation
+  description: Insert into the employee table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertEmployee
+  permissions:
+    - role: admin
+      allowExecution: true
+

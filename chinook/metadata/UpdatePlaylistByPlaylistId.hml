@@ -1,0 +1,182 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnPlaylistName
+  description: Update the 'name' column in the 'playlist' collection
+  fields:
+    - name: set
+      type: Varchar
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnPlaylistName
+    inputTypeName: chinook_UpdateColumnPlaylistNameInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_playlist_name
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnPlaylistName
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnPlaylistPlaylistId
+  description: Update the 'playlist_id' column in the 'playlist' collection
+  fields:
+    - name: set
+      type: Int4!
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnPlaylistPlaylistId
+    inputTypeName: chinook_UpdateColumnPlaylistPlaylistIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_playlist_playlist_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnPlaylistPlaylistId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdatePlaylistByPlaylistIdUpdateColumns
+  description: Update the columns of the 'playlist' collection
+  fields:
+    - name: name
+      type: UpdateColumnPlaylistName
+      description: Update the 'name' column in the 'playlist' collection.
+    - name: playlistId
+      type: UpdateColumnPlaylistPlaylistId
+      description: Update the 'playlist_id' column in the 'playlist' collection.
+  graphql:
+    typeName: chinook_UpdatePlaylistByPlaylistIdUpdateColumns
+    inputTypeName: chinook_UpdatePlaylistByPlaylistIdUpdateColumnsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_playlist_by_playlist_id_update_columns
+      fieldMapping:
+        name:
+          column:
+            name: name
+        playlistId:
+          column:
+            name: playlist_id
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdatePlaylistByPlaylistIdUpdateColumns
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - name
+          - playlistId
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdatePlaylistByPlaylistIdResponse
+  description: Responses from the 'update_playlist_by_playlist_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Playlist!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: chinook_UpdatePlaylistByPlaylistIdResponse
+    inputTypeName: chinook_UpdatePlaylistByPlaylistIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_playlist_by_playlist_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdatePlaylistByPlaylistIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: UpdatePlaylistByPlaylistId
+  outputType: UpdatePlaylistByPlaylistIdResponse!
+  arguments:
+    - name: keyPlaylistId
+      type: Int4!
+    - name: postCheck
+      type: PlaylistBoolExp
+      description: Update permission post-condition predicate over the 'playlist' collection
+    - name: preCheck
+      type: PlaylistBoolExp
+      description: Update permission pre-condition predicate over the 'playlist' collection
+    - name: updateColumns
+      type: UpdatePlaylistByPlaylistIdUpdateColumns!
+  source:
+    dataConnectorName: postgres
+    dataConnectorCommand:
+      procedure: update_playlist_by_playlist_id
+    argumentMapping:
+      keyPlaylistId: key_playlist_id
+      postCheck: post_check
+      preCheck: pre_check
+      updateColumns: update_columns
+  graphql:
+    rootFieldName: chinook_updatePlaylistByPlaylistId
+    rootFieldKind: Mutation
+  description: Update any row on the 'playlist' collection using the 'playlist_id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: UpdatePlaylistByPlaylistId
+  permissions:
+    - role: admin
+      allowExecution: true
+

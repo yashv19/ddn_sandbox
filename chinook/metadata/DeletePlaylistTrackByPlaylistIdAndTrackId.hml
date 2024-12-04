@@ -1,0 +1,77 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeletePlaylistTrackByPlaylistIdAndTrackIdResponse
+  description: Responses from the
+    'delete_playlist_track_by_playlist_id_and_track_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[PlaylistTrack!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: chinook_DeletePlaylistTrackByPlaylistIdAndTrackIdResponse
+    inputTypeName: chinook_DeletePlaylistTrackByPlaylistIdAndTrackIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: delete_playlist_track_by_playlist_id_and_track_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeletePlaylistTrackByPlaylistIdAndTrackIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeletePlaylistTrackByPlaylistIdAndTrackId
+  outputType: DeletePlaylistTrackByPlaylistIdAndTrackIdResponse!
+  arguments:
+    - name: keyPlaylistId
+      type: Int4!
+    - name: keyTrackId
+      type: Int4!
+    - name: preCheck
+      type: PlaylistTrackBoolExp
+      description: Delete permission predicate over the 'playlist_track' collection
+  source:
+    dataConnectorName: postgres
+    dataConnectorCommand:
+      procedure: delete_playlist_track_by_playlist_id_and_track_id
+    argumentMapping:
+      keyPlaylistId: key_playlist_id
+      keyTrackId: key_track_id
+      preCheck: pre_check
+  graphql:
+    rootFieldName: chinook_deletePlaylistTrackByPlaylistIdAndTrackId
+    rootFieldKind: Mutation
+  description: Delete any row on the 'playlist_track' collection using the
+    'playlist_id' and 'track_id' keys
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeletePlaylistTrackByPlaylistIdAndTrackId
+  permissions:
+    - role: admin
+      allowExecution: true
+

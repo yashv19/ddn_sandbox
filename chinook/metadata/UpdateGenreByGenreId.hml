@@ -1,0 +1,182 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnGenreGenreId
+  description: Update the 'genre_id' column in the 'genre' collection
+  fields:
+    - name: set
+      type: Int4!
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnGenreGenreId
+    inputTypeName: chinook_UpdateColumnGenreGenreIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_genre_genre_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnGenreGenreId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnGenreName
+  description: Update the 'name' column in the 'genre' collection
+  fields:
+    - name: set
+      type: Varchar
+      description: Set the column to this value
+  graphql:
+    typeName: chinook_UpdateColumnGenreName
+    inputTypeName: chinook_UpdateColumnGenreNameInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_column_genre_name
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnGenreName
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateGenreByGenreIdUpdateColumns
+  description: Update the columns of the 'genre' collection
+  fields:
+    - name: genreId
+      type: UpdateColumnGenreGenreId
+      description: Update the 'genre_id' column in the 'genre' collection.
+    - name: name
+      type: UpdateColumnGenreName
+      description: Update the 'name' column in the 'genre' collection.
+  graphql:
+    typeName: chinook_UpdateGenreByGenreIdUpdateColumns
+    inputTypeName: chinook_UpdateGenreByGenreIdUpdateColumnsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_genre_by_genre_id_update_columns
+      fieldMapping:
+        genreId:
+          column:
+            name: genre_id
+        name:
+          column:
+            name: name
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateGenreByGenreIdUpdateColumns
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - genreId
+          - name
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateGenreByGenreIdResponse
+  description: Responses from the 'update_genre_by_genre_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Genre!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: chinook_UpdateGenreByGenreIdResponse
+    inputTypeName: chinook_UpdateGenreByGenreIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: update_genre_by_genre_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateGenreByGenreIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: UpdateGenreByGenreId
+  outputType: UpdateGenreByGenreIdResponse!
+  arguments:
+    - name: keyGenreId
+      type: Int4!
+    - name: postCheck
+      type: GenreBoolExp
+      description: Update permission post-condition predicate over the 'genre' collection
+    - name: preCheck
+      type: GenreBoolExp
+      description: Update permission pre-condition predicate over the 'genre' collection
+    - name: updateColumns
+      type: UpdateGenreByGenreIdUpdateColumns!
+  source:
+    dataConnectorName: postgres
+    dataConnectorCommand:
+      procedure: update_genre_by_genre_id
+    argumentMapping:
+      keyGenreId: key_genre_id
+      postCheck: post_check
+      preCheck: pre_check
+      updateColumns: update_columns
+  graphql:
+    rootFieldName: chinook_updateGenreByGenreId
+    rootFieldKind: Mutation
+  description: Update any row on the 'genre' collection using the 'genre_id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: UpdateGenreByGenreId
+  permissions:
+    - role: admin
+      allowExecution: true
+

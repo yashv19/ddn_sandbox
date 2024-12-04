@@ -1,0 +1,72 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeleteArtistByArtistIdResponse
+  description: Responses from the 'delete_artist_by_artist_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Artist!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: chinook_DeleteArtistByArtistIdResponse
+    inputTypeName: chinook_DeleteArtistByArtistIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: delete_artist_by_artist_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeleteArtistByArtistIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeleteArtistByArtistId
+  outputType: DeleteArtistByArtistIdResponse!
+  arguments:
+    - name: keyArtistId
+      type: Int4!
+    - name: preCheck
+      type: ArtistBoolExp
+      description: Delete permission predicate over the 'artist' collection
+  source:
+    dataConnectorName: postgres
+    dataConnectorCommand:
+      procedure: delete_artist_by_artist_id
+    argumentMapping:
+      keyArtistId: key_artist_id
+      preCheck: pre_check
+  graphql:
+    rootFieldName: chinook_deleteArtistByArtistId
+    rootFieldKind: Mutation
+  description: Delete any row on the 'artist' collection using the 'artist_id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeleteArtistByArtistId
+  permissions:
+    - role: admin
+      allowExecution: true
+

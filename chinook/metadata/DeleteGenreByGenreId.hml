@@ -1,0 +1,72 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeleteGenreByGenreIdResponse
+  description: Responses from the 'delete_genre_by_genre_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Genre!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: chinook_DeleteGenreByGenreIdResponse
+    inputTypeName: chinook_DeleteGenreByGenreIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: delete_genre_by_genre_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeleteGenreByGenreIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeleteGenreByGenreId
+  outputType: DeleteGenreByGenreIdResponse!
+  arguments:
+    - name: keyGenreId
+      type: Int4!
+    - name: preCheck
+      type: GenreBoolExp
+      description: Delete permission predicate over the 'genre' collection
+  source:
+    dataConnectorName: postgres
+    dataConnectorCommand:
+      procedure: delete_genre_by_genre_id
+    argumentMapping:
+      keyGenreId: key_genre_id
+      preCheck: pre_check
+  graphql:
+    rootFieldName: chinook_deleteGenreByGenreId
+    rootFieldKind: Mutation
+  description: Delete any row on the 'genre' collection using the 'genre_id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeleteGenreByGenreId
+  permissions:
+    - role: admin
+      allowExecution: true
+

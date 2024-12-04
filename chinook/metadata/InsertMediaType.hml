@@ -1,0 +1,108 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertMediaTypeObject
+  fields:
+    - name: mediaTypeId
+      type: Int4!
+    - name: name
+      type: Varchar
+  graphql:
+    typeName: chinook_InsertMediaTypeObject
+    inputTypeName: chinook_InsertMediaTypeObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: insert_media_type_object
+      fieldMapping:
+        mediaTypeId:
+          column:
+            name: media_type_id
+        name:
+          column:
+            name: name
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertMediaTypeObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - mediaTypeId
+          - name
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertMediaTypeResponse
+  description: Responses from the 'insert_media_type' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[MediaType!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: chinook_InsertMediaTypeResponse
+    inputTypeName: chinook_InsertMediaTypeResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: insert_media_type_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertMediaTypeResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertMediaType
+  outputType: InsertMediaTypeResponse!
+  arguments:
+    - name: objects
+      type: "[InsertMediaTypeObject!]!"
+    - name: postCheck
+      type: MediaTypeBoolExp
+      description: Insert permission predicate over the 'media_type' collection
+  source:
+    dataConnectorName: postgres
+    dataConnectorCommand:
+      procedure: insert_media_type
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: chinook_insertMediaType
+    rootFieldKind: Mutation
+  description: Insert into the media_type table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertMediaType
+  permissions:
+    - role: admin
+      allowExecution: true
+

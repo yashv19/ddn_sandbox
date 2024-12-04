@@ -1,0 +1,18 @@
+kind: Connector
+version: v2
+definition:
+  name: postgres
+  subgraph: chinook
+  source: hasura/postgres:v1.2.0
+  context: .
+  envMapping:
+    CLIENT_CERT:
+      fromEnv: CHINOOK_POSTGRES_CLIENT_CERT
+    CONNECTION_URI:
+      fromEnv: CHINOOK_POSTGRES_CONNECTION_URI
+    HASURA_SERVICE_TOKEN_SECRET:
+      fromEnv: CHINOOK_POSTGRES_HASURA_SERVICE_TOKEN_SECRET
+    OTEL_EXPORTER_OTLP_ENDPOINT:
+      fromEnv: CHINOOK_POSTGRES_OTEL_EXPORTER_OTLP_ENDPOINT
+    OTEL_SERVICE_NAME:
+      fromEnv: CHINOOK_POSTGRES_OTEL_SERVICE_NAME

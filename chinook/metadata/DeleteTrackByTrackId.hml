@@ -1,0 +1,72 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeleteTrackByTrackIdResponse
+  description: Responses from the 'delete_track_by_track_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Track!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: chinook_DeleteTrackByTrackIdResponse
+    inputTypeName: chinook_DeleteTrackByTrackIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: delete_track_by_track_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeleteTrackByTrackIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeleteTrackByTrackId
+  outputType: DeleteTrackByTrackIdResponse!
+  arguments:
+    - name: keyTrackId
+      type: Int4!
+    - name: preCheck
+      type: TrackBoolExp
+      description: Delete permission predicate over the 'track' collection
+  source:
+    dataConnectorName: postgres
+    dataConnectorCommand:
+      procedure: delete_track_by_track_id
+    argumentMapping:
+      keyTrackId: key_track_id
+      preCheck: pre_check
+  graphql:
+    rootFieldName: chinook_deleteTrackByTrackId
+    rootFieldKind: Mutation
+  description: Delete any row on the 'track' collection using the 'track_id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeleteTrackByTrackId
+  permissions:
+    - role: admin
+      allowExecution: true
+

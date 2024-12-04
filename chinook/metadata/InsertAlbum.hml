@@ -1,0 +1,114 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertAlbumObject
+  fields:
+    - name: albumId
+      type: Int4!
+    - name: artistId
+      type: Int4!
+    - name: title
+      type: Varchar!
+  graphql:
+    typeName: chinook_InsertAlbumObject
+    inputTypeName: chinook_InsertAlbumObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: insert_album_object
+      fieldMapping:
+        albumId:
+          column:
+            name: album_id
+        artistId:
+          column:
+            name: artist_id
+        title:
+          column:
+            name: title
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertAlbumObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - albumId
+          - artistId
+          - title
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertAlbumResponse
+  description: Responses from the 'insert_album' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Album!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: chinook_InsertAlbumResponse
+    inputTypeName: chinook_InsertAlbumResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: insert_album_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertAlbumResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertAlbum
+  outputType: InsertAlbumResponse!
+  arguments:
+    - name: objects
+      type: "[InsertAlbumObject!]!"
+    - name: postCheck
+      type: AlbumBoolExp
+      description: Insert permission predicate over the 'album' collection
+  source:
+    dataConnectorName: postgres
+    dataConnectorCommand:
+      procedure: insert_album
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: chinook_insertAlbum
+    rootFieldKind: Mutation
+  description: Insert into the album table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertAlbum
+  permissions:
+    - role: admin
+      allowExecution: true
+

@@ -1,0 +1,150 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertInvoiceObject
+  fields:
+    - name: billingAddress
+      type: Varchar
+    - name: billingCity
+      type: Varchar
+    - name: billingCountry
+      type: Varchar
+    - name: billingPostalCode
+      type: Varchar
+    - name: billingState
+      type: Varchar
+    - name: customerId
+      type: Int4!
+    - name: invoiceDate
+      type: Timestamp!
+    - name: invoiceId
+      type: Int4!
+    - name: total
+      type: Numeric!
+  graphql:
+    typeName: chinook_InsertInvoiceObject
+    inputTypeName: chinook_InsertInvoiceObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: insert_invoice_object
+      fieldMapping:
+        billingAddress:
+          column:
+            name: billing_address
+        billingCity:
+          column:
+            name: billing_city
+        billingCountry:
+          column:
+            name: billing_country
+        billingPostalCode:
+          column:
+            name: billing_postal_code
+        billingState:
+          column:
+            name: billing_state
+        customerId:
+          column:
+            name: customer_id
+        invoiceDate:
+          column:
+            name: invoice_date
+        invoiceId:
+          column:
+            name: invoice_id
+        total:
+          column:
+            name: total
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertInvoiceObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - billingAddress
+          - billingCity
+          - billingCountry
+          - billingPostalCode
+          - billingState
+          - customerId
+          - invoiceDate
+          - invoiceId
+          - total
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertInvoiceResponse
+  description: Responses from the 'insert_invoice' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Invoice!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: chinook_InsertInvoiceResponse
+    inputTypeName: chinook_InsertInvoiceResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: insert_invoice_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertInvoiceResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertInvoice
+  outputType: InsertInvoiceResponse!
+  arguments:
+    - name: objects
+      type: "[InsertInvoiceObject!]!"
+    - name: postCheck
+      type: InvoiceBoolExp
+      description: Insert permission predicate over the 'invoice' collection
+  source:
+    dataConnectorName: postgres
+    dataConnectorCommand:
+      procedure: insert_invoice
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: chinook_insertInvoice
+    rootFieldKind: Mutation
+  description: Insert into the invoice table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertInvoice
+  permissions:
+    - role: admin
+      allowExecution: true
+

@@ -1,0 +1,72 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeleteCustomerByCustomerIdResponse
+  description: Responses from the 'delete_customer_by_customer_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Customer!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: chinook_DeleteCustomerByCustomerIdResponse
+    inputTypeName: chinook_DeleteCustomerByCustomerIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: delete_customer_by_customer_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeleteCustomerByCustomerIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeleteCustomerByCustomerId
+  outputType: DeleteCustomerByCustomerIdResponse!
+  arguments:
+    - name: keyCustomerId
+      type: Int4!
+    - name: preCheck
+      type: CustomerBoolExp
+      description: Delete permission predicate over the 'customer' collection
+  source:
+    dataConnectorName: postgres
+    dataConnectorCommand:
+      procedure: delete_customer_by_customer_id
+    argumentMapping:
+      keyCustomerId: key_customer_id
+      preCheck: pre_check
+  graphql:
+    rootFieldName: chinook_deleteCustomerByCustomerId
+    rootFieldKind: Mutation
+  description: Delete any row on the 'customer' collection using the 'customer_id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeleteCustomerByCustomerId
+  permissions:
+    - role: admin
+      allowExecution: true
+

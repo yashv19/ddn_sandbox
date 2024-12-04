@@ -1,0 +1,145 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Playlist
+  fields:
+    - name: name
+      type: Varchar
+    - name: playlistId
+      type: Int4!
+  graphql:
+    typeName: chinook_Playlist
+    inputTypeName: chinook_PlaylistInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: playlist
+      fieldMapping:
+        name:
+          column:
+            name: name
+        playlistId:
+          column:
+            name: playlist_id
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Playlist
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - name
+          - playlistId
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: PlaylistBoolExp
+  operand:
+    object:
+      type: Playlist
+      comparableFields:
+        - fieldName: name
+          booleanExpressionType: VarcharBoolExp
+        - fieldName: playlistId
+          booleanExpressionType: Int4BoolExp
+      comparableRelationships:
+        - relationshipName: playlistTracks
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: chinook_PlaylistBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: PlaylistAggExp
+  operand:
+    object:
+      aggregatedType: Playlist
+      aggregatableFields:
+        - fieldName: name
+          aggregateExpression: VarcharAggExp
+        - fieldName: playlistId
+          aggregateExpression: Int4AggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: chinook_PlaylistAggExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Playlist
+  objectType: Playlist
+  source:
+    dataConnectorName: postgres
+    collection: playlist
+  filterExpressionType: PlaylistBoolExp
+  aggregateExpression: PlaylistAggExp
+  orderableFields:
+    - fieldName: name
+      orderByDirections:
+        enableAll: true
+    - fieldName: playlistId
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: chinook_playlist
+      subscription:
+        rootField: chinook_playlist
+    selectUniques:
+      - queryRootField: chinook_playlistByPlaylistId
+        uniqueIdentifier:
+          - playlistId
+        subscription:
+          rootField: chinook_playlistByPlaylistId
+    orderByExpressionType: chinook_PlaylistOrderBy
+    filterInputTypeName: chinook_PlaylistFilterInput
+    aggregate:
+      queryRootField: chinook_playlistAggregate
+      subscription:
+        rootField: chinook_playlistAggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Playlist
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: playlistTracks
+  sourceType: Playlist
+  target:
+    model:
+      name: PlaylistTrack
+      relationshipType: Array
+      aggregate:
+        aggregateExpression: PlaylistTrackAggExp
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: playlistId
+      target:
+        modelField:
+          - fieldName: playlistId
+  graphql:
+    aggregateFieldName: playlistTracksAggregate
+

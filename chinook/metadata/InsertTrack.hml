@@ -1,0 +1,150 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertTrackObject
+  fields:
+    - name: albumId
+      type: Int4
+    - name: bytes
+      type: Int4
+    - name: composer
+      type: Varchar
+    - name: genreId
+      type: Int4
+    - name: mediaTypeId
+      type: Int4!
+    - name: milliseconds
+      type: Int4!
+    - name: name
+      type: Varchar!
+    - name: trackId
+      type: Int4!
+    - name: unitPrice
+      type: Numeric!
+  graphql:
+    typeName: chinook_InsertTrackObject
+    inputTypeName: chinook_InsertTrackObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: insert_track_object
+      fieldMapping:
+        albumId:
+          column:
+            name: album_id
+        bytes:
+          column:
+            name: bytes
+        composer:
+          column:
+            name: composer
+        genreId:
+          column:
+            name: genre_id
+        mediaTypeId:
+          column:
+            name: media_type_id
+        milliseconds:
+          column:
+            name: milliseconds
+        name:
+          column:
+            name: name
+        trackId:
+          column:
+            name: track_id
+        unitPrice:
+          column:
+            name: unit_price
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertTrackObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - albumId
+          - bytes
+          - composer
+          - genreId
+          - mediaTypeId
+          - milliseconds
+          - name
+          - trackId
+          - unitPrice
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertTrackResponse
+  description: Responses from the 'insert_track' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Track!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: chinook_InsertTrackResponse
+    inputTypeName: chinook_InsertTrackResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: insert_track_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertTrackResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertTrack
+  outputType: InsertTrackResponse!
+  arguments:
+    - name: objects
+      type: "[InsertTrackObject!]!"
+    - name: postCheck
+      type: TrackBoolExp
+      description: Insert permission predicate over the 'track' collection
+  source:
+    dataConnectorName: postgres
+    dataConnectorCommand:
+      procedure: insert_track
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: chinook_insertTrack
+    rootFieldKind: Mutation
+  description: Insert into the track table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertTrack
+  permissions:
+    - role: admin
+      allowExecution: true
+

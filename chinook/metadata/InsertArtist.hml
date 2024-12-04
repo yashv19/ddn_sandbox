@@ -1,0 +1,108 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertArtistObject
+  fields:
+    - name: artistId
+      type: Int4!
+    - name: name
+      type: Varchar
+  graphql:
+    typeName: chinook_InsertArtistObject
+    inputTypeName: chinook_InsertArtistObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: insert_artist_object
+      fieldMapping:
+        artistId:
+          column:
+            name: artist_id
+        name:
+          column:
+            name: name
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertArtistObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - artistId
+          - name
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertArtistResponse
+  description: Responses from the 'insert_artist' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Artist!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: chinook_InsertArtistResponse
+    inputTypeName: chinook_InsertArtistResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: insert_artist_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertArtistResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertArtist
+  outputType: InsertArtistResponse!
+  arguments:
+    - name: objects
+      type: "[InsertArtistObject!]!"
+    - name: postCheck
+      type: ArtistBoolExp
+      description: Insert permission predicate over the 'artist' collection
+  source:
+    dataConnectorName: postgres
+    dataConnectorCommand:
+      procedure: insert_artist
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: chinook_insertArtist
+    rootFieldKind: Mutation
+  description: Insert into the artist table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertArtist
+  permissions:
+    - role: admin
+      allowExecution: true
+
