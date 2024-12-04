@@ -1,0 +1,29 @@
+kind: Subgraph
+version: v2
+definition:
+  name: cinema
+  generator:
+    rootPath: .
+    graphqlRootFieldPrefix: cinema_
+    graphqlTypeNamePrefix: cinema_
+    namingConvention: graphql
+  includePaths:
+    - metadata
+  envMapping:
+    CINEMA_MONGODB_AUTHORIZATION_HEADER:
+      fromEnv: CINEMA_MONGODB_AUTHORIZATION_HEADER
+    CINEMA_MONGODB_READ_URL:
+      fromEnv: CINEMA_MONGODB_READ_URL
+    CINEMA_MONGODB_WRITE_URL:
+      fromEnv: CINEMA_MONGODB_WRITE_URL
+    CINEMA_TS_MODIFIER_AUTHORIZATION_HEADER:
+      fromEnv: CINEMA_TS_MODIFIER_AUTHORIZATION_HEADER
+    CINEMA_TS_MODIFIER_READ_URL:
+      fromEnv: CINEMA_TS_MODIFIER_READ_URL
+    CINEMA_TS_MODIFIER_WRITE_URL:
+      fromEnv: CINEMA_TS_MODIFIER_WRITE_URL
+  connectors:
+    - path: connector/mongodb/connector.yaml
+      connectorLinkName: mongodb
+    - path: connector/ts_modifier/connector.yaml
+      connectorLinkName: ts_modifier

@@ -1,0 +1,135 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Sessions
+  fields:
+    - name: id
+      type: ObjectId!
+    - name: jwt
+      type: String
+    - name: userId
+      type: String
+  graphql:
+    typeName: cinema_Sessions
+    inputTypeName: cinema_SessionsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: mongodb
+      dataConnectorObjectType: sessions
+      fieldMapping:
+        id:
+          column:
+            name: _id
+        jwt:
+          column:
+            name: jwt
+        userId:
+          column:
+            name: user_id
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Sessions
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - id
+          - jwt
+          - userId
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: SessionsBoolExp
+  operand:
+    object:
+      type: Sessions
+      comparableFields:
+        - fieldName: id
+          booleanExpressionType: ObjectIdBoolExp
+        - fieldName: jwt
+          booleanExpressionType: StringBoolExp
+        - fieldName: userId
+          booleanExpressionType: StringBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: cinema_SessionsBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: SessionsAggExp
+  operand:
+    object:
+      aggregatedType: Sessions
+      aggregatableFields:
+        - fieldName: id
+          aggregateExpression: ObjectIdAggExp
+        - fieldName: jwt
+          aggregateExpression: StringAggExp
+        - fieldName: userId
+          aggregateExpression: StringAggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: cinema_SessionsAggExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Sessions
+  objectType: Sessions
+  source:
+    dataConnectorName: mongodb
+    collection: sessions
+  filterExpressionType: SessionsBoolExp
+  aggregateExpression: SessionsAggExp
+  orderableFields:
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: jwt
+      orderByDirections:
+        enableAll: true
+    - fieldName: userId
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: cinema_sessions
+      subscription:
+        rootField: cinema_sessions
+    selectUniques:
+      - queryRootField: cinema_sessionsById
+        uniqueIdentifier:
+          - id
+        subscription:
+          rootField: cinema_sessionsById
+    orderByExpressionType: cinema_SessionsOrderBy
+    filterInputTypeName: cinema_SessionsFilterInput
+    aggregate:
+      queryRootField: cinema_sessionsAggregate
+      subscription:
+        rootField: cinema_sessionsAggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Sessions
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

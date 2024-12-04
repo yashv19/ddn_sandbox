@@ -1,0 +1,13 @@
+services:
+  cinema_ts_modifier:
+    build:
+      context: .
+      dockerfile: .hasura-connector/Dockerfile
+    environment:
+      HASURA_SERVICE_TOKEN_SECRET: $CINEMA_TS_MODIFIER_HASURA_SERVICE_TOKEN_SECRET
+      OTEL_EXPORTER_OTLP_ENDPOINT: $CINEMA_TS_MODIFIER_OTEL_EXPORTER_OTLP_ENDPOINT
+      OTEL_SERVICE_NAME: $CINEMA_TS_MODIFIER_OTEL_SERVICE_NAME
+    extra_hosts:
+      - local.hasura.dev:host-gateway
+    ports:
+      - 8716:8080

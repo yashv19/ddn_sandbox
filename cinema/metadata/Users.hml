@@ -1,0 +1,148 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Users
+  fields:
+    - name: id
+      type: ObjectId!
+    - name: email
+      type: String
+    - name: name
+      type: String
+    - name: password
+      type: String
+  graphql:
+    typeName: cinema_Users
+    inputTypeName: cinema_UsersInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: mongodb
+      dataConnectorObjectType: users
+      fieldMapping:
+        id:
+          column:
+            name: _id
+        email:
+          column:
+            name: email
+        name:
+          column:
+            name: name
+        password:
+          column:
+            name: password
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Users
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - id
+          - email
+          - name
+          - password
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: UsersBoolExp
+  operand:
+    object:
+      type: Users
+      comparableFields:
+        - fieldName: id
+          booleanExpressionType: ObjectIdBoolExp
+        - fieldName: email
+          booleanExpressionType: StringBoolExp
+        - fieldName: name
+          booleanExpressionType: StringBoolExp
+        - fieldName: password
+          booleanExpressionType: StringBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: cinema_UsersBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: UsersAggExp
+  operand:
+    object:
+      aggregatedType: Users
+      aggregatableFields:
+        - fieldName: id
+          aggregateExpression: ObjectIdAggExp
+        - fieldName: email
+          aggregateExpression: StringAggExp
+        - fieldName: name
+          aggregateExpression: StringAggExp
+        - fieldName: password
+          aggregateExpression: StringAggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: cinema_UsersAggExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Users
+  objectType: Users
+  source:
+    dataConnectorName: mongodb
+    collection: users
+  filterExpressionType: UsersBoolExp
+  aggregateExpression: UsersAggExp
+  orderableFields:
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: email
+      orderByDirections:
+        enableAll: true
+    - fieldName: name
+      orderByDirections:
+        enableAll: true
+    - fieldName: password
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: cinema_users
+      subscription:
+        rootField: cinema_users
+    selectUniques:
+      - queryRootField: cinema_usersById
+        uniqueIdentifier:
+          - id
+        subscription:
+          rootField: cinema_usersById
+    orderByExpressionType: cinema_UsersOrderBy
+    filterInputTypeName: cinema_UsersFilterInput
+    aggregate:
+      queryRootField: cinema_usersAggregate
+      subscription:
+        rootField: cinema_usersAggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Users
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

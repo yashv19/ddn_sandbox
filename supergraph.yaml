@@ -4,3 +4,4 @@ definition:
   subgraphs:
     - globals/subgraph.yaml
     - chinook/subgraph.yaml
+    - cinema/subgraph.yaml

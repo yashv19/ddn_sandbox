@@ -1,0 +1,14 @@
+services:
+  cinema_mongodb:
+    build:
+      context: .
+      dockerfile: .hasura-connector/Dockerfile.mongodb
+    environment:
+      HASURA_SERVICE_TOKEN_SECRET: $CINEMA_MONGODB_HASURA_SERVICE_TOKEN_SECRET
+      MONGODB_DATABASE_URI: $CINEMA_MONGODB_MONGODB_DATABASE_URI
+      OTEL_EXPORTER_OTLP_ENDPOINT: $CINEMA_MONGODB_OTEL_EXPORTER_OTLP_ENDPOINT
+      OTEL_SERVICE_NAME: $CINEMA_MONGODB_OTEL_SERVICE_NAME
+    extra_hosts:
+      - local.hasura.dev:host-gateway
+    ports:
+      - 7373:8080
