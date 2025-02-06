@@ -1,0 +1,301 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1Lineitem
+  description: Lineitem data as defined by TPC-H
+  fields:
+    - name: lComment
+      type: String_1!
+    - name: lCommitdate
+      type: Date!
+    - name: lDiscount
+      type: Float64!
+    - name: lExtendedprice
+      type: Float64!
+    - name: lLinenumber
+      type: Biginteger!
+    - name: lLinestatus
+      type: String_1!
+    - name: lOrderkey
+      type: Biginteger!
+    - name: lPartkey
+      type: Biginteger!
+    - name: lQuantity
+      type: Float64!
+    - name: lReceiptdate
+      type: Date!
+    - name: lReturnflag
+      type: String_1!
+    - name: lShipdate
+      type: Date!
+    - name: lShipinstruct
+      type: String_1!
+    - name: lShipmode
+      type: String_1!
+    - name: lSuppkey
+      type: Biginteger!
+    - name: lTax
+      type: Float64!
+  graphql:
+    typeName: SnowflakeSampleDataTpchSf1Lineitem
+    inputTypeName: SnowflakeSampleDataTpchSf1LineitemInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: snowflake_sample_data
+      dataConnectorObjectType: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.LINEITEM
+      fieldMapping:
+        lComment:
+          column:
+            name: L_COMMENT
+        lCommitdate:
+          column:
+            name: L_COMMITDATE
+        lDiscount:
+          column:
+            name: L_DISCOUNT
+        lExtendedprice:
+          column:
+            name: L_EXTENDEDPRICE
+        lLinenumber:
+          column:
+            name: L_LINENUMBER
+        lLinestatus:
+          column:
+            name: L_LINESTATUS
+        lOrderkey:
+          column:
+            name: L_ORDERKEY
+        lPartkey:
+          column:
+            name: L_PARTKEY
+        lQuantity:
+          column:
+            name: L_QUANTITY
+        lReceiptdate:
+          column:
+            name: L_RECEIPTDATE
+        lReturnflag:
+          column:
+            name: L_RETURNFLAG
+        lShipdate:
+          column:
+            name: L_SHIPDATE
+        lShipinstruct:
+          column:
+            name: L_SHIPINSTRUCT
+        lShipmode:
+          column:
+            name: L_SHIPMODE
+        lSuppkey:
+          column:
+            name: L_SUPPKEY
+        lTax:
+          column:
+            name: L_TAX
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: SnowflakeSampleDataTpchSf1Lineitem
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - lComment
+          - lCommitdate
+          - lDiscount
+          - lExtendedprice
+          - lLinenumber
+          - lLinestatus
+          - lOrderkey
+          - lPartkey
+          - lQuantity
+          - lReceiptdate
+          - lReturnflag
+          - lShipdate
+          - lShipinstruct
+          - lShipmode
+          - lSuppkey
+          - lTax
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1LineitemBoolExp
+  operand:
+    object:
+      type: SnowflakeSampleDataTpchSf1Lineitem
+      comparableFields:
+        - fieldName: lComment
+          booleanExpressionType: StringBoolExp
+        - fieldName: lCommitdate
+          booleanExpressionType: DateBoolExp
+        - fieldName: lDiscount
+          booleanExpressionType: Float64BoolExp
+        - fieldName: lExtendedprice
+          booleanExpressionType: Float64BoolExp
+        - fieldName: lLinenumber
+          booleanExpressionType: BigintegerBoolExp
+        - fieldName: lLinestatus
+          booleanExpressionType: StringBoolExp
+        - fieldName: lOrderkey
+          booleanExpressionType: BigintegerBoolExp
+        - fieldName: lPartkey
+          booleanExpressionType: BigintegerBoolExp
+        - fieldName: lQuantity
+          booleanExpressionType: Float64BoolExp
+        - fieldName: lReceiptdate
+          booleanExpressionType: DateBoolExp
+        - fieldName: lReturnflag
+          booleanExpressionType: StringBoolExp
+        - fieldName: lShipdate
+          booleanExpressionType: DateBoolExp
+        - fieldName: lShipinstruct
+          booleanExpressionType: StringBoolExp
+        - fieldName: lShipmode
+          booleanExpressionType: StringBoolExp
+        - fieldName: lSuppkey
+          booleanExpressionType: BigintegerBoolExp
+        - fieldName: lTax
+          booleanExpressionType: Float64BoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: SnowflakeSampleDataTpchSf1LineitemBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1LineitemAggExp
+  operand:
+    object:
+      aggregatedType: SnowflakeSampleDataTpchSf1Lineitem
+      aggregatableFields:
+        - fieldName: lComment
+          aggregateExpression: StringAggExp
+        - fieldName: lCommitdate
+          aggregateExpression: DateAggExp
+        - fieldName: lDiscount
+          aggregateExpression: Float64AggExp
+        - fieldName: lExtendedprice
+          aggregateExpression: Float64AggExp
+        - fieldName: lLinenumber
+          aggregateExpression: BigintegerAggExp
+        - fieldName: lLinestatus
+          aggregateExpression: StringAggExp
+        - fieldName: lOrderkey
+          aggregateExpression: BigintegerAggExp
+        - fieldName: lPartkey
+          aggregateExpression: BigintegerAggExp
+        - fieldName: lQuantity
+          aggregateExpression: Float64AggExp
+        - fieldName: lReceiptdate
+          aggregateExpression: DateAggExp
+        - fieldName: lReturnflag
+          aggregateExpression: StringAggExp
+        - fieldName: lShipdate
+          aggregateExpression: DateAggExp
+        - fieldName: lShipinstruct
+          aggregateExpression: StringAggExp
+        - fieldName: lShipmode
+          aggregateExpression: StringAggExp
+        - fieldName: lSuppkey
+          aggregateExpression: BigintegerAggExp
+        - fieldName: lTax
+          aggregateExpression: Float64AggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: SnowflakeSampleDataTpchSf1LineitemAggExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1Lineitem
+  objectType: SnowflakeSampleDataTpchSf1Lineitem
+  source:
+    dataConnectorName: snowflake_sample_data
+    collection: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.LINEITEM
+  filterExpressionType: SnowflakeSampleDataTpchSf1LineitemBoolExp
+  aggregateExpression: SnowflakeSampleDataTpchSf1LineitemAggExp
+  orderableFields:
+    - fieldName: lComment
+      orderByDirections:
+        enableAll: true
+    - fieldName: lCommitdate
+      orderByDirections:
+        enableAll: true
+    - fieldName: lDiscount
+      orderByDirections:
+        enableAll: true
+    - fieldName: lExtendedprice
+      orderByDirections:
+        enableAll: true
+    - fieldName: lLinenumber
+      orderByDirections:
+        enableAll: true
+    - fieldName: lLinestatus
+      orderByDirections:
+        enableAll: true
+    - fieldName: lOrderkey
+      orderByDirections:
+        enableAll: true
+    - fieldName: lPartkey
+      orderByDirections:
+        enableAll: true
+    - fieldName: lQuantity
+      orderByDirections:
+        enableAll: true
+    - fieldName: lReceiptdate
+      orderByDirections:
+        enableAll: true
+    - fieldName: lReturnflag
+      orderByDirections:
+        enableAll: true
+    - fieldName: lShipdate
+      orderByDirections:
+        enableAll: true
+    - fieldName: lShipinstruct
+      orderByDirections:
+        enableAll: true
+    - fieldName: lShipmode
+      orderByDirections:
+        enableAll: true
+    - fieldName: lSuppkey
+      orderByDirections:
+        enableAll: true
+    - fieldName: lTax
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: snowflakeSampleDataTpchSf1Lineitem
+      subscription:
+        rootField: snowflakeSampleDataTpchSf1Lineitem
+    selectUniques: []
+    orderByExpressionType: SnowflakeSampleDataTpchSf1LineitemOrderBy
+    filterInputTypeName: SnowflakeSampleDataTpchSf1LineitemFilterInput
+    aggregate:
+      queryRootField: snowflakeSampleDataTpchSf1LineitemAggregate
+      subscription:
+        rootField: snowflakeSampleDataTpchSf1LineitemAggregate
+  description: Lineitem data as defined by TPC-H
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: SnowflakeSampleDataTpchSf1Lineitem
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

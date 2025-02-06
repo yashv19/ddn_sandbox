@@ -14,13 +14,45 @@ definition:
   schema:
     version: v0.1
     schema:
-      scalar_types: {}
+      scalar_types:
+        String:
+          representation:
+            type: string
+          aggregate_functions: {}
+          comparison_operators:
+            _eq:
+              type: equal
       object_types: {}
       collections: []
-      functions: []
-      procedures: []
+      functions:
+        - name: get_uppercase
+          arguments:
+            name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+          result_type:
+            type: named
+            name: String
+      procedures:
+        - name: get_lowercase
+          description: This is exposed as a command. Returns lower case
+          arguments:
+            name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+          result_type:
+            type: named
+            name: String
     capabilities:
-      version: ""
+      version: 0.1.6
       capabilities:
-        query: {}
+        query:
+          variables: {}
+          nested_fields: {}
         mutation: {}

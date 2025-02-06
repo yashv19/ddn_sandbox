@@ -1,0 +1,210 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1Orders
+  description: Orders data as defined by TPC-H
+  fields:
+    - name: oClerk
+      type: String_1!
+    - name: oComment
+      type: String_1!
+    - name: oCustkey
+      type: Biginteger!
+    - name: oOrderdate
+      type: Date!
+    - name: oOrderkey
+      type: Biginteger!
+    - name: oOrderpriority
+      type: String_1!
+    - name: oOrderstatus
+      type: String_1!
+    - name: oShippriority
+      type: Biginteger!
+    - name: oTotalprice
+      type: Float64!
+  graphql:
+    typeName: SnowflakeSampleDataTpchSf1Orders
+    inputTypeName: SnowflakeSampleDataTpchSf1OrdersInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: snowflake_sample_data
+      dataConnectorObjectType: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.ORDERS
+      fieldMapping:
+        oClerk:
+          column:
+            name: O_CLERK
+        oComment:
+          column:
+            name: O_COMMENT
+        oCustkey:
+          column:
+            name: O_CUSTKEY
+        oOrderdate:
+          column:
+            name: O_ORDERDATE
+        oOrderkey:
+          column:
+            name: O_ORDERKEY
+        oOrderpriority:
+          column:
+            name: O_ORDERPRIORITY
+        oOrderstatus:
+          column:
+            name: O_ORDERSTATUS
+        oShippriority:
+          column:
+            name: O_SHIPPRIORITY
+        oTotalprice:
+          column:
+            name: O_TOTALPRICE
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: SnowflakeSampleDataTpchSf1Orders
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - oClerk
+          - oComment
+          - oCustkey
+          - oOrderdate
+          - oOrderkey
+          - oOrderpriority
+          - oOrderstatus
+          - oShippriority
+          - oTotalprice
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1OrdersBoolExp
+  operand:
+    object:
+      type: SnowflakeSampleDataTpchSf1Orders
+      comparableFields:
+        - fieldName: oClerk
+          booleanExpressionType: StringBoolExp
+        - fieldName: oComment
+          booleanExpressionType: StringBoolExp
+        - fieldName: oCustkey
+          booleanExpressionType: BigintegerBoolExp
+        - fieldName: oOrderdate
+          booleanExpressionType: DateBoolExp
+        - fieldName: oOrderkey
+          booleanExpressionType: BigintegerBoolExp
+        - fieldName: oOrderpriority
+          booleanExpressionType: StringBoolExp
+        - fieldName: oOrderstatus
+          booleanExpressionType: StringBoolExp
+        - fieldName: oShippriority
+          booleanExpressionType: BigintegerBoolExp
+        - fieldName: oTotalprice
+          booleanExpressionType: Float64BoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: SnowflakeSampleDataTpchSf1OrdersBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1OrdersAggExp
+  operand:
+    object:
+      aggregatedType: SnowflakeSampleDataTpchSf1Orders
+      aggregatableFields:
+        - fieldName: oClerk
+          aggregateExpression: StringAggExp
+        - fieldName: oComment
+          aggregateExpression: StringAggExp
+        - fieldName: oCustkey
+          aggregateExpression: BigintegerAggExp
+        - fieldName: oOrderdate
+          aggregateExpression: DateAggExp
+        - fieldName: oOrderkey
+          aggregateExpression: BigintegerAggExp
+        - fieldName: oOrderpriority
+          aggregateExpression: StringAggExp
+        - fieldName: oOrderstatus
+          aggregateExpression: StringAggExp
+        - fieldName: oShippriority
+          aggregateExpression: BigintegerAggExp
+        - fieldName: oTotalprice
+          aggregateExpression: Float64AggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: SnowflakeSampleDataTpchSf1OrdersAggExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1Orders
+  objectType: SnowflakeSampleDataTpchSf1Orders
+  source:
+    dataConnectorName: snowflake_sample_data
+    collection: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.ORDERS
+  filterExpressionType: SnowflakeSampleDataTpchSf1OrdersBoolExp
+  aggregateExpression: SnowflakeSampleDataTpchSf1OrdersAggExp
+  orderableFields:
+    - fieldName: oClerk
+      orderByDirections:
+        enableAll: true
+    - fieldName: oComment
+      orderByDirections:
+        enableAll: true
+    - fieldName: oCustkey
+      orderByDirections:
+        enableAll: true
+    - fieldName: oOrderdate
+      orderByDirections:
+        enableAll: true
+    - fieldName: oOrderkey
+      orderByDirections:
+        enableAll: true
+    - fieldName: oOrderpriority
+      orderByDirections:
+        enableAll: true
+    - fieldName: oOrderstatus
+      orderByDirections:
+        enableAll: true
+    - fieldName: oShippriority
+      orderByDirections:
+        enableAll: true
+    - fieldName: oTotalprice
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: snowflakeSampleDataTpchSf1Orders
+      subscription:
+        rootField: snowflakeSampleDataTpchSf1Orders
+    selectUniques: []
+    orderByExpressionType: SnowflakeSampleDataTpchSf1OrdersOrderBy
+    filterInputTypeName: SnowflakeSampleDataTpchSf1OrdersFilterInput
+    aggregate:
+      queryRootField: snowflakeSampleDataTpchSf1OrdersAggregate
+      subscription:
+        rootField: snowflakeSampleDataTpchSf1OrdersAggregate
+  description: Orders data as defined by TPC-H
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: SnowflakeSampleDataTpchSf1Orders
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

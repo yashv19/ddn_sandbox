@@ -2,6 +2,7 @@ include:
   - path: chinook/connector/postgres/compose.yaml
   - path: cinema/connector/mongodb/compose.yaml
   - path: cinema/connector/ts_modifier/compose.yaml
+  - path: snowflake/connector/snowflake_sample_data/compose.yaml
 services:
   engine:
     build:

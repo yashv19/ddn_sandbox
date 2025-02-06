@@ -1,0 +1,158 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1Partsupp
+  description: Partsupp data as defined by TPC-H
+  fields:
+    - name: psAvailqty
+      type: Biginteger!
+    - name: psComment
+      type: String_1
+    - name: psPartkey
+      type: Biginteger!
+    - name: psSuppkey
+      type: Biginteger!
+    - name: psSupplycost
+      type: Float64!
+  graphql:
+    typeName: SnowflakeSampleDataTpchSf1Partsupp
+    inputTypeName: SnowflakeSampleDataTpchSf1PartsuppInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: snowflake_sample_data
+      dataConnectorObjectType: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.PARTSUPP
+      fieldMapping:
+        psAvailqty:
+          column:
+            name: PS_AVAILQTY
+        psComment:
+          column:
+            name: PS_COMMENT
+        psPartkey:
+          column:
+            name: PS_PARTKEY
+        psSuppkey:
+          column:
+            name: PS_SUPPKEY
+        psSupplycost:
+          column:
+            name: PS_SUPPLYCOST
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: SnowflakeSampleDataTpchSf1Partsupp
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - psAvailqty
+          - psComment
+          - psPartkey
+          - psSuppkey
+          - psSupplycost
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1PartsuppBoolExp
+  operand:
+    object:
+      type: SnowflakeSampleDataTpchSf1Partsupp
+      comparableFields:
+        - fieldName: psAvailqty
+          booleanExpressionType: BigintegerBoolExp
+        - fieldName: psComment
+          booleanExpressionType: StringBoolExp
+        - fieldName: psPartkey
+          booleanExpressionType: BigintegerBoolExp
+        - fieldName: psSuppkey
+          booleanExpressionType: BigintegerBoolExp
+        - fieldName: psSupplycost
+          booleanExpressionType: Float64BoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: SnowflakeSampleDataTpchSf1PartsuppBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1PartsuppAggExp
+  operand:
+    object:
+      aggregatedType: SnowflakeSampleDataTpchSf1Partsupp
+      aggregatableFields:
+        - fieldName: psAvailqty
+          aggregateExpression: BigintegerAggExp
+        - fieldName: psComment
+          aggregateExpression: StringAggExp
+        - fieldName: psPartkey
+          aggregateExpression: BigintegerAggExp
+        - fieldName: psSuppkey
+          aggregateExpression: BigintegerAggExp
+        - fieldName: psSupplycost
+          aggregateExpression: Float64AggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: SnowflakeSampleDataTpchSf1PartsuppAggExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1Partsupp
+  objectType: SnowflakeSampleDataTpchSf1Partsupp
+  source:
+    dataConnectorName: snowflake_sample_data
+    collection: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.PARTSUPP
+  filterExpressionType: SnowflakeSampleDataTpchSf1PartsuppBoolExp
+  aggregateExpression: SnowflakeSampleDataTpchSf1PartsuppAggExp
+  orderableFields:
+    - fieldName: psAvailqty
+      orderByDirections:
+        enableAll: true
+    - fieldName: psComment
+      orderByDirections:
+        enableAll: true
+    - fieldName: psPartkey
+      orderByDirections:
+        enableAll: true
+    - fieldName: psSuppkey
+      orderByDirections:
+        enableAll: true
+    - fieldName: psSupplycost
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: snowflakeSampleDataTpchSf1Partsupp
+      subscription:
+        rootField: snowflakeSampleDataTpchSf1Partsupp
+    selectUniques: []
+    orderByExpressionType: SnowflakeSampleDataTpchSf1PartsuppOrderBy
+    filterInputTypeName: SnowflakeSampleDataTpchSf1PartsuppFilterInput
+    aggregate:
+      queryRootField: snowflakeSampleDataTpchSf1PartsuppAggregate
+      subscription:
+        rootField: snowflakeSampleDataTpchSf1PartsuppAggregate
+  description: Partsupp data as defined by TPC-H
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: SnowflakeSampleDataTpchSf1Partsupp
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

@@ -1,0 +1,145 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1Nation
+  description: Nation data as defined by TPC-H
+  fields:
+    - name: nComment
+      type: String_1
+    - name: nName
+      type: String_1!
+    - name: nNationkey
+      type: Biginteger!
+    - name: nRegionkey
+      type: Biginteger!
+  graphql:
+    typeName: SnowflakeSampleDataTpchSf1Nation
+    inputTypeName: SnowflakeSampleDataTpchSf1NationInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: snowflake_sample_data
+      dataConnectorObjectType: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.NATION
+      fieldMapping:
+        nComment:
+          column:
+            name: N_COMMENT
+        nName:
+          column:
+            name: N_NAME
+        nNationkey:
+          column:
+            name: N_NATIONKEY
+        nRegionkey:
+          column:
+            name: N_REGIONKEY
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: SnowflakeSampleDataTpchSf1Nation
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - nComment
+          - nName
+          - nNationkey
+          - nRegionkey
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1NationBoolExp
+  operand:
+    object:
+      type: SnowflakeSampleDataTpchSf1Nation
+      comparableFields:
+        - fieldName: nComment
+          booleanExpressionType: StringBoolExp
+        - fieldName: nName
+          booleanExpressionType: StringBoolExp
+        - fieldName: nNationkey
+          booleanExpressionType: BigintegerBoolExp
+        - fieldName: nRegionkey
+          booleanExpressionType: BigintegerBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: SnowflakeSampleDataTpchSf1NationBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1NationAggExp
+  operand:
+    object:
+      aggregatedType: SnowflakeSampleDataTpchSf1Nation
+      aggregatableFields:
+        - fieldName: nComment
+          aggregateExpression: StringAggExp
+        - fieldName: nName
+          aggregateExpression: StringAggExp
+        - fieldName: nNationkey
+          aggregateExpression: BigintegerAggExp
+        - fieldName: nRegionkey
+          aggregateExpression: BigintegerAggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: SnowflakeSampleDataTpchSf1NationAggExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1Nation
+  objectType: SnowflakeSampleDataTpchSf1Nation
+  source:
+    dataConnectorName: snowflake_sample_data
+    collection: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.NATION
+  filterExpressionType: SnowflakeSampleDataTpchSf1NationBoolExp
+  aggregateExpression: SnowflakeSampleDataTpchSf1NationAggExp
+  orderableFields:
+    - fieldName: nComment
+      orderByDirections:
+        enableAll: true
+    - fieldName: nName
+      orderByDirections:
+        enableAll: true
+    - fieldName: nNationkey
+      orderByDirections:
+        enableAll: true
+    - fieldName: nRegionkey
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: snowflakeSampleDataTpchSf1Nation
+      subscription:
+        rootField: snowflakeSampleDataTpchSf1Nation
+    selectUniques: []
+    orderByExpressionType: SnowflakeSampleDataTpchSf1NationOrderBy
+    filterInputTypeName: SnowflakeSampleDataTpchSf1NationFilterInput
+    aggregate:
+      queryRootField: snowflakeSampleDataTpchSf1NationAggregate
+      subscription:
+        rootField: snowflakeSampleDataTpchSf1NationAggregate
+  description: Nation data as defined by TPC-H
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: SnowflakeSampleDataTpchSf1Nation
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

@@ -1,0 +1,197 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1Customer
+  description: Customer data as defined by TPC-H
+  fields:
+    - name: cAcctbal
+      type: Float64!
+    - name: cAddress
+      type: String_1!
+    - name: cComment
+      type: String_1
+    - name: cCustkey
+      type: Biginteger!
+    - name: cMktsegment
+      type: String_1
+    - name: cName
+      type: String_1!
+    - name: cNationkey
+      type: Biginteger!
+    - name: cPhone
+      type: String_1!
+  graphql:
+    typeName: SnowflakeSampleDataTpchSf1Customer
+    inputTypeName: SnowflakeSampleDataTpchSf1CustomerInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: snowflake_sample_data
+      dataConnectorObjectType: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.CUSTOMER
+      fieldMapping:
+        cAcctbal:
+          column:
+            name: C_ACCTBAL
+        cAddress:
+          column:
+            name: C_ADDRESS
+        cComment:
+          column:
+            name: C_COMMENT
+        cCustkey:
+          column:
+            name: C_CUSTKEY
+        cMktsegment:
+          column:
+            name: C_MKTSEGMENT
+        cName:
+          column:
+            name: C_NAME
+        cNationkey:
+          column:
+            name: C_NATIONKEY
+        cPhone:
+          column:
+            name: C_PHONE
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: SnowflakeSampleDataTpchSf1Customer
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - cAcctbal
+          - cAddress
+          - cComment
+          - cCustkey
+          - cMktsegment
+          - cName
+          - cNationkey
+          - cPhone
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1CustomerBoolExp
+  operand:
+    object:
+      type: SnowflakeSampleDataTpchSf1Customer
+      comparableFields:
+        - fieldName: cAcctbal
+          booleanExpressionType: Float64BoolExp
+        - fieldName: cAddress
+          booleanExpressionType: StringBoolExp
+        - fieldName: cComment
+          booleanExpressionType: StringBoolExp
+        - fieldName: cCustkey
+          booleanExpressionType: BigintegerBoolExp
+        - fieldName: cMktsegment
+          booleanExpressionType: StringBoolExp
+        - fieldName: cName
+          booleanExpressionType: StringBoolExp
+        - fieldName: cNationkey
+          booleanExpressionType: BigintegerBoolExp
+        - fieldName: cPhone
+          booleanExpressionType: StringBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: SnowflakeSampleDataTpchSf1CustomerBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1CustomerAggExp
+  operand:
+    object:
+      aggregatedType: SnowflakeSampleDataTpchSf1Customer
+      aggregatableFields:
+        - fieldName: cAcctbal
+          aggregateExpression: Float64AggExp
+        - fieldName: cAddress
+          aggregateExpression: StringAggExp
+        - fieldName: cComment
+          aggregateExpression: StringAggExp
+        - fieldName: cCustkey
+          aggregateExpression: BigintegerAggExp
+        - fieldName: cMktsegment
+          aggregateExpression: StringAggExp
+        - fieldName: cName
+          aggregateExpression: StringAggExp
+        - fieldName: cNationkey
+          aggregateExpression: BigintegerAggExp
+        - fieldName: cPhone
+          aggregateExpression: StringAggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: SnowflakeSampleDataTpchSf1CustomerAggExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1Customer
+  objectType: SnowflakeSampleDataTpchSf1Customer
+  source:
+    dataConnectorName: snowflake_sample_data
+    collection: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.CUSTOMER
+  filterExpressionType: SnowflakeSampleDataTpchSf1CustomerBoolExp
+  aggregateExpression: SnowflakeSampleDataTpchSf1CustomerAggExp
+  orderableFields:
+    - fieldName: cAcctbal
+      orderByDirections:
+        enableAll: true
+    - fieldName: cAddress
+      orderByDirections:
+        enableAll: true
+    - fieldName: cComment
+      orderByDirections:
+        enableAll: true
+    - fieldName: cCustkey
+      orderByDirections:
+        enableAll: true
+    - fieldName: cMktsegment
+      orderByDirections:
+        enableAll: true
+    - fieldName: cName
+      orderByDirections:
+        enableAll: true
+    - fieldName: cNationkey
+      orderByDirections:
+        enableAll: true
+    - fieldName: cPhone
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: snowflakeSampleDataTpchSf1Customer
+      subscription:
+        rootField: snowflakeSampleDataTpchSf1Customer
+    selectUniques: []
+    orderByExpressionType: SnowflakeSampleDataTpchSf1CustomerOrderBy
+    filterInputTypeName: SnowflakeSampleDataTpchSf1CustomerFilterInput
+    aggregate:
+      queryRootField: snowflakeSampleDataTpchSf1CustomerAggregate
+      subscription:
+        rootField: snowflakeSampleDataTpchSf1CustomerAggregate
+  description: Customer data as defined by TPC-H
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: SnowflakeSampleDataTpchSf1Customer
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

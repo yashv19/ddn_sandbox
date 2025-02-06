@@ -33,6 +33,11 @@ definition:
         allowedFields:
           - artistId
           - name
+    - role: public
+      output: 
+        allowedFields:
+          - artistId
+          - name
 
 ---
 kind: BooleanExpressionType
@@ -120,6 +125,9 @@ definition:
       select:
         filter: null
         allowSubscriptions: true
+    - role: public
+      select: 
+        filter: null
 
 ---
 kind: Relationship

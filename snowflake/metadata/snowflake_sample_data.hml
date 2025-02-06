@@ -1,0 +1,962 @@
+kind: DataConnectorLink
+version: v1
+definition:
+  name: snowflake_sample_data
+  url:
+    readWriteUrls:
+      read:
+        valueFromEnv: SNOWFLAKE_SNOWFLAKE_SAMPLE_DATA_READ_URL
+      write:
+        valueFromEnv: SNOWFLAKE_SNOWFLAKE_SAMPLE_DATA_WRITE_URL
+  headers:
+    Authorization:
+      valueFromEnv: SNOWFLAKE_SNOWFLAKE_SAMPLE_DATA_AUTHORIZATION_HEADER
+  schema:
+    version: v0.1
+    schema:
+      scalar_types:
+        BIGDECIMAL:
+          representation:
+            type: bigdecimal
+          aggregate_functions:
+            avg:
+              result_type:
+                type: named
+                name: FLOAT64
+            max:
+              result_type:
+                type: named
+                name: BIGDECIMAL
+            min:
+              result_type:
+                type: named
+                name: BIGDECIMAL
+            sum:
+              result_type:
+                type: named
+                name: BIGDECIMAL
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: BIGDECIMAL
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: BIGDECIMAL
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: BIGDECIMAL
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: BIGDECIMAL
+        BIGINTEGER:
+          representation:
+            type: biginteger
+          aggregate_functions:
+            avg:
+              result_type:
+                type: named
+                name: FLOAT64
+            max:
+              result_type:
+                type: named
+                name: BIGINTEGER
+            min:
+              result_type:
+                type: named
+                name: BIGINTEGER
+            sum:
+              result_type:
+                type: named
+                name: BIGINTEGER
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: BIGINTEGER
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: BIGINTEGER
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: BIGINTEGER
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: BIGINTEGER
+        BOOLEAN:
+          representation:
+            type: boolean
+          aggregate_functions: {}
+          comparison_operators:
+            _eq:
+              type: equal
+        BYTES:
+          representation:
+            type: bytes
+          aggregate_functions: {}
+          comparison_operators:
+            _eq:
+              type: equal
+        DATE:
+          representation:
+            type: date
+          aggregate_functions: {}
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: DATE
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: DATE
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: DATE
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: DATE
+        FLOAT32:
+          representation:
+            type: float32
+          aggregate_functions:
+            avg:
+              result_type:
+                type: named
+                name: FLOAT64
+            max:
+              result_type:
+                type: named
+                name: FLOAT32
+            min:
+              result_type:
+                type: named
+                name: FLOAT32
+            sum:
+              result_type:
+                type: named
+                name: FLOAT32
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: FLOAT32
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: FLOAT32
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: FLOAT32
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: FLOAT32
+        FLOAT64:
+          representation:
+            type: float64
+          aggregate_functions:
+            avg:
+              result_type:
+                type: named
+                name: FLOAT64
+            max:
+              result_type:
+                type: named
+                name: FLOAT64
+            min:
+              result_type:
+                type: named
+                name: FLOAT64
+            sum:
+              result_type:
+                type: named
+                name: FLOAT64
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: FLOAT64
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: FLOAT64
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: FLOAT64
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: FLOAT64
+        GEOGRAPHY:
+          representation:
+            type: geography
+          aggregate_functions: {}
+          comparison_operators:
+            _eq:
+              type: equal
+        GEOMETRY:
+          representation:
+            type: geometry
+          aggregate_functions: {}
+          comparison_operators:
+            _eq:
+              type: equal
+        INT8:
+          representation:
+            type: int8
+          aggregate_functions:
+            avg:
+              result_type:
+                type: named
+                name: FLOAT64
+            max:
+              result_type:
+                type: named
+                name: INT8
+            min:
+              result_type:
+                type: named
+                name: INT8
+            sum:
+              result_type:
+                type: named
+                name: INT64
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: INT8
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: INT8
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: INT8
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: INT8
+        INT16:
+          representation:
+            type: int16
+          aggregate_functions:
+            avg:
+              result_type:
+                type: named
+                name: FLOAT64
+            max:
+              result_type:
+                type: named
+                name: INT16
+            min:
+              result_type:
+                type: named
+                name: INT16
+            sum:
+              result_type:
+                type: named
+                name: INT64
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: INT16
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: INT16
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: INT16
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: INT16
+        INT32:
+          representation:
+            type: int32
+          aggregate_functions:
+            avg:
+              result_type:
+                type: named
+                name: FLOAT64
+            max:
+              result_type:
+                type: named
+                name: INT32
+            min:
+              result_type:
+                type: named
+                name: INT32
+            sum:
+              result_type:
+                type: named
+                name: INT64
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: INT32
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: INT32
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: INT32
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: INT32
+        INT64:
+          representation:
+            type: int64
+          aggregate_functions:
+            avg:
+              result_type:
+                type: named
+                name: FLOAT64
+            max:
+              result_type:
+                type: named
+                name: INT64
+            min:
+              result_type:
+                type: named
+                name: INT64
+            sum:
+              result_type:
+                type: named
+                name: INT64
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: INT64
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: INT64
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: INT64
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: INT64
+        JSON:
+          representation:
+            type: json
+          aggregate_functions: {}
+          comparison_operators:
+            _eq:
+              type: equal
+        STRING:
+          representation:
+            type: string
+          aggregate_functions:
+            max:
+              result_type:
+                type: named
+                name: STRING
+            min:
+              result_type:
+                type: named
+                name: STRING
+          comparison_operators:
+            _contains:
+              type: custom
+              argument_type:
+                type: named
+                name: STRING
+            _eq:
+              type: equal
+            _in:
+              type: in
+            _like:
+              type: custom
+              argument_type:
+                type: named
+                name: STRING
+        TIMESTAMP:
+          representation:
+            type: timestamp
+          aggregate_functions: {}
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: TIMESTAMP
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: TIMESTAMP
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: TIMESTAMP
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: TIMESTAMP
+        TIMESTAMPTZ:
+          representation:
+            type: timestamptz
+          aggregate_functions: {}
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: TIMESTAMPTZ
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: TIMESTAMPTZ
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: TIMESTAMPTZ
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: TIMESTAMPTZ
+        UUID:
+          representation:
+            type: uuid
+          aggregate_functions: {}
+          comparison_operators:
+            _eq:
+              type: equal
+        VECTOR:
+          representation:
+            type: json
+          aggregate_functions: {}
+          comparison_operators:
+            _eq:
+              type: equal
+      object_types:
+        SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.CUSTOMER:
+          description: Customer data as defined by TPC-H
+          fields:
+            C_ACCTBAL:
+              type:
+                type: named
+                name: FLOAT64
+              arguments: {}
+            C_ADDRESS:
+              type:
+                type: named
+                name: STRING
+              arguments: {}
+            C_COMMENT:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: STRING
+              arguments: {}
+            C_CUSTKEY:
+              type:
+                type: named
+                name: BIGINTEGER
+              arguments: {}
+            C_MKTSEGMENT:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: STRING
+              arguments: {}
+            C_NAME:
+              type:
+                type: named
+                name: STRING
+              arguments: {}
+            C_NATIONKEY:
+              type:
+                type: named
+                name: BIGINTEGER
+              arguments: {}
+            C_PHONE:
+              type:
+                type: named
+                name: STRING
+              arguments: {}
+        SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.LINEITEM:
+          description: Lineitem data as defined by TPC-H
+          fields:
+            L_COMMENT:
+              type:
+                type: named
+                name: STRING
+              arguments: {}
+            L_COMMITDATE:
+              type:
+                type: named
+                name: DATE
+              arguments: {}
+            L_DISCOUNT:
+              type:
+                type: named
+                name: FLOAT64
+              arguments: {}
+            L_EXTENDEDPRICE:
+              type:
+                type: named
+                name: FLOAT64
+              arguments: {}
+            L_LINENUMBER:
+              type:
+                type: named
+                name: BIGINTEGER
+              arguments: {}
+            L_LINESTATUS:
+              type:
+                type: named
+                name: STRING
+              arguments: {}
+            L_ORDERKEY:
+              type:
+                type: named
+                name: BIGINTEGER
+              arguments: {}
+            L_PARTKEY:
+              type:
+                type: named
+                name: BIGINTEGER
+              arguments: {}
+            L_QUANTITY:
+              type:
+                type: named
+                name: FLOAT64
+              arguments: {}
+            L_RECEIPTDATE:
+              type:
+                type: named
+                name: DATE
+              arguments: {}
+            L_RETURNFLAG:
+              type:
+                type: named
+                name: STRING
+              arguments: {}
+            L_SHIPDATE:
+              type:
+                type: named
+                name: DATE
+              arguments: {}
+            L_SHIPINSTRUCT:
+              type:
+                type: named
+                name: STRING
+              arguments: {}
+            L_SHIPMODE:
+              type:
+                type: named
+                name: STRING
+              arguments: {}
+            L_SUPPKEY:
+              type:
+                type: named
+                name: BIGINTEGER
+              arguments: {}
+            L_TAX:
+              type:
+                type: named
+                name: FLOAT64
+              arguments: {}
+        SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.NATION:
+          description: Nation data as defined by TPC-H
+          fields:
+            N_COMMENT:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: STRING
+              arguments: {}
+            N_NAME:
+              type:
+                type: named
+                name: STRING
+              arguments: {}
+            N_NATIONKEY:
+              type:
+                type: named
+                name: BIGINTEGER
+              arguments: {}
+            N_REGIONKEY:
+              type:
+                type: named
+                name: BIGINTEGER
+              arguments: {}
+        SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.ORDERS:
+          description: Orders data as defined by TPC-H
+          fields:
+            O_CLERK:
+              type:
+                type: named
+                name: STRING
+              arguments: {}
+            O_COMMENT:
+              type:
+                type: named
+                name: STRING
+              arguments: {}
+            O_CUSTKEY:
+              type:
+                type: named
+                name: BIGINTEGER
+              arguments: {}
+            O_ORDERDATE:
+              type:
+                type: named
+                name: DATE
+              arguments: {}
+            O_ORDERKEY:
+              type:
+                type: named
+                name: BIGINTEGER
+              arguments: {}
+            O_ORDERPRIORITY:
+              type:
+                type: named
+                name: STRING
+              arguments: {}
+            O_ORDERSTATUS:
+              type:
+                type: named
+                name: STRING
+              arguments: {}
+            O_SHIPPRIORITY:
+              type:
+                type: named
+                name: BIGINTEGER
+              arguments: {}
+            O_TOTALPRICE:
+              type:
+                type: named
+                name: FLOAT64
+              arguments: {}
+        SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.PART:
+          description: Part data as defined by TPC-H
+          fields:
+            P_BRAND:
+              type:
+                type: named
+                name: STRING
+              arguments: {}
+            P_COMMENT:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: STRING
+              arguments: {}
+            P_CONTAINER:
+              type:
+                type: named
+                name: STRING
+              arguments: {}
+            P_MFGR:
+              type:
+                type: named
+                name: STRING
+              arguments: {}
+            P_NAME:
+              type:
+                type: named
+                name: STRING
+              arguments: {}
+            P_PARTKEY:
+              type:
+                type: named
+                name: BIGINTEGER
+              arguments: {}
+            P_RETAILPRICE:
+              type:
+                type: named
+                name: FLOAT64
+              arguments: {}
+            P_SIZE:
+              type:
+                type: named
+                name: BIGINTEGER
+              arguments: {}
+            P_TYPE:
+              type:
+                type: named
+                name: STRING
+              arguments: {}
+        SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.PARTSUPP:
+          description: Partsupp data as defined by TPC-H
+          fields:
+            PS_AVAILQTY:
+              type:
+                type: named
+                name: BIGINTEGER
+              arguments: {}
+            PS_COMMENT:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: STRING
+              arguments: {}
+            PS_PARTKEY:
+              type:
+                type: named
+                name: BIGINTEGER
+              arguments: {}
+            PS_SUPPKEY:
+              type:
+                type: named
+                name: BIGINTEGER
+              arguments: {}
+            PS_SUPPLYCOST:
+              type:
+                type: named
+                name: FLOAT64
+              arguments: {}
+        SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.REGION:
+          description: Region data as defined by TPC-H
+          fields:
+            R_COMMENT:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: STRING
+              arguments: {}
+            R_NAME:
+              type:
+                type: named
+                name: STRING
+              arguments: {}
+            R_REGIONKEY:
+              type:
+                type: named
+                name: BIGINTEGER
+              arguments: {}
+        SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.SUPPLIER:
+          description: Supplier data as defined by TPC-H
+          fields:
+            S_ACCTBAL:
+              type:
+                type: named
+                name: FLOAT64
+              arguments: {}
+            S_ADDRESS:
+              type:
+                type: named
+                name: STRING
+              arguments: {}
+            S_COMMENT:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: STRING
+              arguments: {}
+            S_NAME:
+              type:
+                type: named
+                name: STRING
+              arguments: {}
+            S_NATIONKEY:
+              type:
+                type: named
+                name: BIGINTEGER
+              arguments: {}
+            S_PHONE:
+              type:
+                type: named
+                name: STRING
+              arguments: {}
+            S_SUPPKEY:
+              type:
+                type: named
+                name: BIGINTEGER
+              arguments: {}
+      collections:
+        - name: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.CUSTOMER
+          description: Customer data as defined by TPC-H
+          arguments: {}
+          type: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.CUSTOMER
+          uniqueness_constraints:
+            SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.CUSTOMER_PK:
+              unique_columns: []
+          foreign_keys: {}
+        - name: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.LINEITEM
+          description: Lineitem data as defined by TPC-H
+          arguments: {}
+          type: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.LINEITEM
+          uniqueness_constraints:
+            SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.LINEITEM_PK:
+              unique_columns: []
+          foreign_keys: {}
+        - name: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.ORDERS
+          description: Orders data as defined by TPC-H
+          arguments: {}
+          type: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.ORDERS
+          uniqueness_constraints:
+            SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.ORDERS_PK:
+              unique_columns: []
+          foreign_keys: {}
+        - name: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.PART
+          description: Part data as defined by TPC-H
+          arguments: {}
+          type: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.PART
+          uniqueness_constraints:
+            SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.PART_PK:
+              unique_columns: []
+          foreign_keys: {}
+        - name: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.PARTSUPP
+          description: Partsupp data as defined by TPC-H
+          arguments: {}
+          type: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.PARTSUPP
+          uniqueness_constraints:
+            SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.PARTSUPP_PK:
+              unique_columns: []
+          foreign_keys: {}
+        - name: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.SUPPLIER
+          description: Supplier data as defined by TPC-H
+          arguments: {}
+          type: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.SUPPLIER
+          uniqueness_constraints:
+            SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.SUPPLIER_PK:
+              unique_columns: []
+          foreign_keys: {}
+        - name: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.NATION
+          description: Nation data as defined by TPC-H
+          arguments: {}
+          type: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.NATION
+          uniqueness_constraints:
+            SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.NATION_PK:
+              unique_columns: []
+          foreign_keys: {}
+        - name: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.REGION
+          description: Region data as defined by TPC-H
+          arguments: {}
+          type: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.REGION
+          uniqueness_constraints:
+            SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.REGION_PK:
+              unique_columns: []
+          foreign_keys: {}
+      functions: []
+      procedures: []
+    capabilities:
+      version: 0.1.2
+      capabilities:
+        query:
+          aggregates: {}
+          variables: {}
+          explain: {}
+        mutation: {}
+        relationships:
+          relation_comparisons: {}
+          order_by_aggregate: {}

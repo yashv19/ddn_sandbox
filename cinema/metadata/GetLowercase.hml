@@ -1,0 +1,27 @@
+---
+kind: Command
+version: v1
+definition:
+  name: GetLowercase
+  outputType: String!
+  arguments:
+    - name: name
+      type: String
+  source:
+    dataConnectorName: ts_modifier
+    dataConnectorCommand:
+      procedure: get_lowercase
+  graphql:
+    rootFieldName: cinema_getLowercase
+    rootFieldKind: Mutation
+  description: This is exposed as a command. Returns lower case
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: GetLowercase
+  permissions:
+    - role: admin
+      allowExecution: true
+

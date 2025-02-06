@@ -1,0 +1,615 @@
+{
+  "jdbcUrl" : {
+    "variable" : "JDBC_URL"
+  },
+  "jdbcProperties" : { },
+  "schemas" : [ ],
+  "tables" : [ {
+    "tableName" : "SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.CUSTOMER",
+    "tableType" : "TABLE",
+    "description" : "Customer data as defined by TPC-H",
+    "columns" : [ {
+      "name" : "C_PHONE",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "C_MKTSEGMENT",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : true,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "C_ACCTBAL",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 12,
+      "numeric_scale" : 2,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "C_NAME",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "C_CUSTKEY",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 38,
+      "numeric_scale" : 0,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "C_ADDRESS",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "C_NATIONKEY",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 38,
+      "numeric_scale" : 0,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "C_COMMENT",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : true,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    } ],
+    "pks" : [ ],
+    "fks" : null
+  }, {
+    "tableName" : "SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.LINEITEM",
+    "tableType" : "TABLE",
+    "description" : "Lineitem data as defined by TPC-H",
+    "columns" : [ {
+      "name" : "L_LINENUMBER",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 38,
+      "numeric_scale" : 0,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "L_SUPPKEY",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 38,
+      "numeric_scale" : 0,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "L_COMMENT",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "L_SHIPDATE",
+      "description" : null,
+      "type" : "DATE",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "L_LINESTATUS",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "L_SHIPMODE",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "L_EXTENDEDPRICE",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 12,
+      "numeric_scale" : 2,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "L_PARTKEY",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 38,
+      "numeric_scale" : 0,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "L_COMMITDATE",
+      "description" : null,
+      "type" : "DATE",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "L_ORDERKEY",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 38,
+      "numeric_scale" : 0,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "L_SHIPINSTRUCT",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "L_RETURNFLAG",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "L_QUANTITY",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 12,
+      "numeric_scale" : 2,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "L_DISCOUNT",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 12,
+      "numeric_scale" : 2,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "L_TAX",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 12,
+      "numeric_scale" : 2,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "L_RECEIPTDATE",
+      "description" : null,
+      "type" : "DATE",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    } ],
+    "pks" : [ ],
+    "fks" : null
+  }, {
+    "tableName" : "SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.ORDERS",
+    "tableType" : "TABLE",
+    "description" : "Orders data as defined by TPC-H",
+    "columns" : [ {
+      "name" : "O_ORDERKEY",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 38,
+      "numeric_scale" : 0,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "O_ORDERDATE",
+      "description" : null,
+      "type" : "DATE",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "O_COMMENT",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "O_ORDERSTATUS",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "O_ORDERPRIORITY",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "O_SHIPPRIORITY",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 38,
+      "numeric_scale" : 0,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "O_CLERK",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "O_CUSTKEY",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 38,
+      "numeric_scale" : 0,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "O_TOTALPRICE",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 12,
+      "numeric_scale" : 2,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    } ],
+    "pks" : [ ],
+    "fks" : null
+  }, {
+    "tableName" : "SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.PART",
+    "tableType" : "TABLE",
+    "description" : "Part data as defined by TPC-H",
+    "columns" : [ {
+      "name" : "P_RETAILPRICE",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 12,
+      "numeric_scale" : 2,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "P_CONTAINER",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "P_COMMENT",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : true,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "P_MFGR",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "P_NAME",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "P_SIZE",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 38,
+      "numeric_scale" : 0,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "P_TYPE",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "P_PARTKEY",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 38,
+      "numeric_scale" : 0,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "P_BRAND",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    } ],
+    "pks" : [ ],
+    "fks" : null
+  }, {
+    "tableName" : "SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.PARTSUPP",
+    "tableType" : "TABLE",
+    "description" : "Partsupp data as defined by TPC-H",
+    "columns" : [ {
+      "name" : "PS_SUPPKEY",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 38,
+      "numeric_scale" : 0,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "PS_PARTKEY",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 38,
+      "numeric_scale" : 0,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "PS_SUPPLYCOST",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 12,
+      "numeric_scale" : 2,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "PS_COMMENT",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : true,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "PS_AVAILQTY",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 38,
+      "numeric_scale" : 0,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    } ],
+    "pks" : [ ],
+    "fks" : null
+  }, {
+    "tableName" : "SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.SUPPLIER",
+    "tableType" : "TABLE",
+    "description" : "Supplier data as defined by TPC-H",
+    "columns" : [ {
+      "name" : "S_ACCTBAL",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 12,
+      "numeric_scale" : 2,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "S_ADDRESS",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "S_COMMENT",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : true,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "S_NAME",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "S_SUPPKEY",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 38,
+      "numeric_scale" : 0,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "S_NATIONKEY",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 38,
+      "numeric_scale" : 0,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "S_PHONE",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    } ],
+    "pks" : [ ],
+    "fks" : null
+  }, {
+    "tableName" : "SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.NATION",
+    "tableType" : "TABLE",
+    "description" : "Nation data as defined by TPC-H",
+    "columns" : [ {
+      "name" : "N_NATIONKEY",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 38,
+      "numeric_scale" : 0,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "N_NAME",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "N_COMMENT",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : true,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "N_REGIONKEY",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 38,
+      "numeric_scale" : 0,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    } ],
+    "pks" : [ ],
+    "fks" : null
+  }, {
+    "tableName" : "SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.REGION",
+    "tableType" : "TABLE",
+    "description" : "Region data as defined by TPC-H",
+    "columns" : [ {
+      "name" : "R_NAME",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "R_REGIONKEY",
+      "description" : null,
+      "type" : "NUMBER",
+      "numeric_precision" : 38,
+      "numeric_scale" : 0,
+      "nullable" : false,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    }, {
+      "name" : "R_COMMENT",
+      "description" : null,
+      "type" : "TEXT",
+      "numeric_precision" : null,
+      "numeric_scale" : null,
+      "nullable" : true,
+      "auto_increment" : false,
+      "is_primarykey" : null
+    } ],
+    "pks" : [ ],
+    "fks" : null
+  } ],
+  "functions" : [ ],
+  "nativeQueries" : { }
+}

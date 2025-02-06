@@ -1,0 +1,132 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1Region
+  description: Region data as defined by TPC-H
+  fields:
+    - name: rComment
+      type: String_1
+    - name: rName
+      type: String_1!
+    - name: rRegionkey
+      type: Biginteger!
+  graphql:
+    typeName: SnowflakeSampleDataTpchSf1Region
+    inputTypeName: SnowflakeSampleDataTpchSf1RegionInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: snowflake_sample_data
+      dataConnectorObjectType: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.REGION
+      fieldMapping:
+        rComment:
+          column:
+            name: R_COMMENT
+        rName:
+          column:
+            name: R_NAME
+        rRegionkey:
+          column:
+            name: R_REGIONKEY
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: SnowflakeSampleDataTpchSf1Region
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - rComment
+          - rName
+          - rRegionkey
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1RegionBoolExp
+  operand:
+    object:
+      type: SnowflakeSampleDataTpchSf1Region
+      comparableFields:
+        - fieldName: rComment
+          booleanExpressionType: StringBoolExp
+        - fieldName: rName
+          booleanExpressionType: StringBoolExp
+        - fieldName: rRegionkey
+          booleanExpressionType: BigintegerBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: SnowflakeSampleDataTpchSf1RegionBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1RegionAggExp
+  operand:
+    object:
+      aggregatedType: SnowflakeSampleDataTpchSf1Region
+      aggregatableFields:
+        - fieldName: rComment
+          aggregateExpression: StringAggExp
+        - fieldName: rName
+          aggregateExpression: StringAggExp
+        - fieldName: rRegionkey
+          aggregateExpression: BigintegerAggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: SnowflakeSampleDataTpchSf1RegionAggExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1Region
+  objectType: SnowflakeSampleDataTpchSf1Region
+  source:
+    dataConnectorName: snowflake_sample_data
+    collection: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.REGION
+  filterExpressionType: SnowflakeSampleDataTpchSf1RegionBoolExp
+  aggregateExpression: SnowflakeSampleDataTpchSf1RegionAggExp
+  orderableFields:
+    - fieldName: rComment
+      orderByDirections:
+        enableAll: true
+    - fieldName: rName
+      orderByDirections:
+        enableAll: true
+    - fieldName: rRegionkey
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: snowflakeSampleDataTpchSf1Region
+      subscription:
+        rootField: snowflakeSampleDataTpchSf1Region
+    selectUniques: []
+    orderByExpressionType: SnowflakeSampleDataTpchSf1RegionOrderBy
+    filterInputTypeName: SnowflakeSampleDataTpchSf1RegionFilterInput
+    aggregate:
+      queryRootField: snowflakeSampleDataTpchSf1RegionAggregate
+      subscription:
+        rootField: snowflakeSampleDataTpchSf1RegionAggregate
+  description: Region data as defined by TPC-H
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: SnowflakeSampleDataTpchSf1Region
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

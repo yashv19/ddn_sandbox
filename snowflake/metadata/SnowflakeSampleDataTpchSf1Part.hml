@@ -1,0 +1,210 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1Part
+  description: Part data as defined by TPC-H
+  fields:
+    - name: pBrand
+      type: String_1!
+    - name: pComment
+      type: String_1
+    - name: pContainer
+      type: String_1!
+    - name: pMfgr
+      type: String_1!
+    - name: pName
+      type: String_1!
+    - name: pPartkey
+      type: Biginteger!
+    - name: pRetailprice
+      type: Float64!
+    - name: pSize
+      type: Biginteger!
+    - name: pType
+      type: String_1!
+  graphql:
+    typeName: SnowflakeSampleDataTpchSf1Part
+    inputTypeName: SnowflakeSampleDataTpchSf1PartInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: snowflake_sample_data
+      dataConnectorObjectType: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.PART
+      fieldMapping:
+        pBrand:
+          column:
+            name: P_BRAND
+        pComment:
+          column:
+            name: P_COMMENT
+        pContainer:
+          column:
+            name: P_CONTAINER
+        pMfgr:
+          column:
+            name: P_MFGR
+        pName:
+          column:
+            name: P_NAME
+        pPartkey:
+          column:
+            name: P_PARTKEY
+        pRetailprice:
+          column:
+            name: P_RETAILPRICE
+        pSize:
+          column:
+            name: P_SIZE
+        pType:
+          column:
+            name: P_TYPE
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: SnowflakeSampleDataTpchSf1Part
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - pBrand
+          - pComment
+          - pContainer
+          - pMfgr
+          - pName
+          - pPartkey
+          - pRetailprice
+          - pSize
+          - pType
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1PartBoolExp
+  operand:
+    object:
+      type: SnowflakeSampleDataTpchSf1Part
+      comparableFields:
+        - fieldName: pBrand
+          booleanExpressionType: StringBoolExp
+        - fieldName: pComment
+          booleanExpressionType: StringBoolExp
+        - fieldName: pContainer
+          booleanExpressionType: StringBoolExp
+        - fieldName: pMfgr
+          booleanExpressionType: StringBoolExp
+        - fieldName: pName
+          booleanExpressionType: StringBoolExp
+        - fieldName: pPartkey
+          booleanExpressionType: BigintegerBoolExp
+        - fieldName: pRetailprice
+          booleanExpressionType: Float64BoolExp
+        - fieldName: pSize
+          booleanExpressionType: BigintegerBoolExp
+        - fieldName: pType
+          booleanExpressionType: StringBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: SnowflakeSampleDataTpchSf1PartBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1PartAggExp
+  operand:
+    object:
+      aggregatedType: SnowflakeSampleDataTpchSf1Part
+      aggregatableFields:
+        - fieldName: pBrand
+          aggregateExpression: StringAggExp
+        - fieldName: pComment
+          aggregateExpression: StringAggExp
+        - fieldName: pContainer
+          aggregateExpression: StringAggExp
+        - fieldName: pMfgr
+          aggregateExpression: StringAggExp
+        - fieldName: pName
+          aggregateExpression: StringAggExp
+        - fieldName: pPartkey
+          aggregateExpression: BigintegerAggExp
+        - fieldName: pRetailprice
+          aggregateExpression: Float64AggExp
+        - fieldName: pSize
+          aggregateExpression: BigintegerAggExp
+        - fieldName: pType
+          aggregateExpression: StringAggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: SnowflakeSampleDataTpchSf1PartAggExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1Part
+  objectType: SnowflakeSampleDataTpchSf1Part
+  source:
+    dataConnectorName: snowflake_sample_data
+    collection: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.PART
+  filterExpressionType: SnowflakeSampleDataTpchSf1PartBoolExp
+  aggregateExpression: SnowflakeSampleDataTpchSf1PartAggExp
+  orderableFields:
+    - fieldName: pBrand
+      orderByDirections:
+        enableAll: true
+    - fieldName: pComment
+      orderByDirections:
+        enableAll: true
+    - fieldName: pContainer
+      orderByDirections:
+        enableAll: true
+    - fieldName: pMfgr
+      orderByDirections:
+        enableAll: true
+    - fieldName: pName
+      orderByDirections:
+        enableAll: true
+    - fieldName: pPartkey
+      orderByDirections:
+        enableAll: true
+    - fieldName: pRetailprice
+      orderByDirections:
+        enableAll: true
+    - fieldName: pSize
+      orderByDirections:
+        enableAll: true
+    - fieldName: pType
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: snowflakeSampleDataTpchSf1Part
+      subscription:
+        rootField: snowflakeSampleDataTpchSf1Part
+    selectUniques: []
+    orderByExpressionType: SnowflakeSampleDataTpchSf1PartOrderBy
+    filterInputTypeName: SnowflakeSampleDataTpchSf1PartFilterInput
+    aggregate:
+      queryRootField: snowflakeSampleDataTpchSf1PartAggregate
+      subscription:
+        rootField: snowflakeSampleDataTpchSf1PartAggregate
+  description: Part data as defined by TPC-H
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: SnowflakeSampleDataTpchSf1Part
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

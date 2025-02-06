@@ -1,0 +1,26 @@
+---
+kind: Command
+version: v1
+definition:
+  name: GetUppercase
+  outputType: String!
+  arguments:
+    - name: name
+      type: String
+  source:
+    dataConnectorName: ts_modifier
+    dataConnectorCommand:
+      function: get_uppercase
+  graphql:
+    rootFieldName: cinema_getUppercase
+    rootFieldKind: Query
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: GetUppercase
+  permissions:
+    - role: admin
+      allowExecution: true
+

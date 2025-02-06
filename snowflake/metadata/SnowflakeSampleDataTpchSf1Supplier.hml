@@ -1,0 +1,184 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1Supplier
+  description: Supplier data as defined by TPC-H
+  fields:
+    - name: sAcctbal
+      type: Float64!
+    - name: sAddress
+      type: String_1!
+    - name: sComment
+      type: String_1
+    - name: sName
+      type: String_1!
+    - name: sNationkey
+      type: Biginteger!
+    - name: sPhone
+      type: String_1!
+    - name: sSuppkey
+      type: Biginteger!
+  graphql:
+    typeName: SnowflakeSampleDataTpchSf1Supplier
+    inputTypeName: SnowflakeSampleDataTpchSf1SupplierInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: snowflake_sample_data
+      dataConnectorObjectType: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.SUPPLIER
+      fieldMapping:
+        sAcctbal:
+          column:
+            name: S_ACCTBAL
+        sAddress:
+          column:
+            name: S_ADDRESS
+        sComment:
+          column:
+            name: S_COMMENT
+        sName:
+          column:
+            name: S_NAME
+        sNationkey:
+          column:
+            name: S_NATIONKEY
+        sPhone:
+          column:
+            name: S_PHONE
+        sSuppkey:
+          column:
+            name: S_SUPPKEY
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: SnowflakeSampleDataTpchSf1Supplier
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - sAcctbal
+          - sAddress
+          - sComment
+          - sName
+          - sNationkey
+          - sPhone
+          - sSuppkey
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1SupplierBoolExp
+  operand:
+    object:
+      type: SnowflakeSampleDataTpchSf1Supplier
+      comparableFields:
+        - fieldName: sAcctbal
+          booleanExpressionType: Float64BoolExp
+        - fieldName: sAddress
+          booleanExpressionType: StringBoolExp
+        - fieldName: sComment
+          booleanExpressionType: StringBoolExp
+        - fieldName: sName
+          booleanExpressionType: StringBoolExp
+        - fieldName: sNationkey
+          booleanExpressionType: BigintegerBoolExp
+        - fieldName: sPhone
+          booleanExpressionType: StringBoolExp
+        - fieldName: sSuppkey
+          booleanExpressionType: BigintegerBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: SnowflakeSampleDataTpchSf1SupplierBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1SupplierAggExp
+  operand:
+    object:
+      aggregatedType: SnowflakeSampleDataTpchSf1Supplier
+      aggregatableFields:
+        - fieldName: sAcctbal
+          aggregateExpression: Float64AggExp
+        - fieldName: sAddress
+          aggregateExpression: StringAggExp
+        - fieldName: sComment
+          aggregateExpression: StringAggExp
+        - fieldName: sName
+          aggregateExpression: StringAggExp
+        - fieldName: sNationkey
+          aggregateExpression: BigintegerAggExp
+        - fieldName: sPhone
+          aggregateExpression: StringAggExp
+        - fieldName: sSuppkey
+          aggregateExpression: BigintegerAggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: SnowflakeSampleDataTpchSf1SupplierAggExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: SnowflakeSampleDataTpchSf1Supplier
+  objectType: SnowflakeSampleDataTpchSf1Supplier
+  source:
+    dataConnectorName: snowflake_sample_data
+    collection: SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.SUPPLIER
+  filterExpressionType: SnowflakeSampleDataTpchSf1SupplierBoolExp
+  aggregateExpression: SnowflakeSampleDataTpchSf1SupplierAggExp
+  orderableFields:
+    - fieldName: sAcctbal
+      orderByDirections:
+        enableAll: true
+    - fieldName: sAddress
+      orderByDirections:
+        enableAll: true
+    - fieldName: sComment
+      orderByDirections:
+        enableAll: true
+    - fieldName: sName
+      orderByDirections:
+        enableAll: true
+    - fieldName: sNationkey
+      orderByDirections:
+        enableAll: true
+    - fieldName: sPhone
+      orderByDirections:
+        enableAll: true
+    - fieldName: sSuppkey
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: snowflakeSampleDataTpchSf1Supplier
+      subscription:
+        rootField: snowflakeSampleDataTpchSf1Supplier
+    selectUniques: []
+    orderByExpressionType: SnowflakeSampleDataTpchSf1SupplierOrderBy
+    filterInputTypeName: SnowflakeSampleDataTpchSf1SupplierFilterInput
+    aggregate:
+      queryRootField: snowflakeSampleDataTpchSf1SupplierAggregate
+      subscription:
+        rootField: snowflakeSampleDataTpchSf1SupplierAggregate
+  description: Supplier data as defined by TPC-H
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: SnowflakeSampleDataTpchSf1Supplier
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

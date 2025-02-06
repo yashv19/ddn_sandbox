@@ -5,3 +5,4 @@ definition:
     - globals/subgraph.yaml
     - chinook/subgraph.yaml
     - cinema/subgraph.yaml
+    - snowflake/subgraph.yaml
