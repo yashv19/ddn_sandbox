@@ -6,3 +6,6 @@ definition:
     rootPath: .
   includePaths:
     - metadata
+  envMapping: 
+    "AUTH_JWK":
+      fromEnv: HASURA_AUTH_JWK

@@ -39,6 +39,12 @@ definition:
           - albumId
           - artistId
           - title
+    - role: member
+      output: 
+        allowedFields:
+          - albumId
+          - artistId
+          - title
 
 ---
 kind: BooleanExpressionType
@@ -132,6 +138,10 @@ definition:
   permissions:
     - role: admin
       select:
+        filter: null
+        allowSubscriptions: true
+    - role: member
+      select: 
         filter: null
         allowSubscriptions: true
 

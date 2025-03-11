@@ -6,7 +6,7 @@ definition:
     default:
       project: viable-meerkat-5108
       supergraph: ../supergraph.yaml
-      subgraph: ../cinema/subgraph.yaml
+      subgraph: ../chinook/subgraph.yaml
       localEnvFile: ../.env
       cloudEnvFile: ../.env.cloud
   scripts:

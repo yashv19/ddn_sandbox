@@ -33,7 +33,7 @@ definition:
         allowedFields:
           - artistId
           - name
-    - role: public
+    - role: member
       output: 
         allowedFields:
           - artistId
@@ -125,7 +125,7 @@ definition:
       select:
         filter: null
         allowSubscriptions: true
-    - role: public
+    - role: member
       select: 
         filter: null
 

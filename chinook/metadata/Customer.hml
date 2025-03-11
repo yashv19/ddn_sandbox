@@ -20,8 +20,12 @@ definition:
       type: Varchar
     - name: firstName
       type: Varchar!
+      deprecated: 
+        reason: firstName is being replaced by fullName
     - name: lastName
       type: Varchar!
+      deprecated: 
+        reason: lastName is being replaced by fullName
     - name: phone
       type: Varchar
     - name: postalCode
@@ -85,6 +89,22 @@ definition:
   permissions:
     - role: admin
       output:
+        allowedFields:
+          - address
+          - city
+          - company
+          - country
+          - customerId
+          - email
+          - fax
+          - firstName
+          - lastName
+          - phone
+          - postalCode
+          - state
+          - supportRepId
+    - role: member
+      output: 
         allowedFields:
           - address
           - city
@@ -262,6 +282,10 @@ definition:
   permissions:
     - role: admin
       select:
+        filter: null
+        allowSubscriptions: true
+    - role: member
+      select: 
         filter: null
         allowSubscriptions: true
 
